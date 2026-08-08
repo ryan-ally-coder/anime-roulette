@@ -1,0 +1,130 @@
+/* Global Styles */
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #121212;
+  color: #ffffff;
+  margin: 0;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+h1 {
+  margin-bottom: 5px;
+  color: #ff4757;
+}
+
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+  max-width: 1000px;
+  width: 100%;
+}
+
+.card {
+  background: #1e1e1e;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+}
+
+/* Wheel Section */
+.wheel-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.wheel-wrapper {
+  position: relative;
+  margin: 20px 0;
+}
+
+.pointer {
+  position: absolute;
+  top: -15px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 0;
+  border-left: 15px solid transparent;
+  border-right: 15px solid transparent;
+  border-top: 25px solid #ff4757;
+  z-index: 10;
+}
+
+canvas {
+  border-radius: 50%;
+  box-shadow: 0 0 15px rgba(255, 255, 255, 0.1);
+}
+
+button {
+  background-color: #ff4757;
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  font-size: 16px;
+  font-weight: bold;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+button:hover {
+  background-color: #ff6b81;
+}
+
+button:disabled {
+  background-color: #555;
+  cursor: not-allowed;
+}
+
+/* Sidebar / Party Section */
+.party-section {
+  flex: 1;
+  min-width: 300px;
+}
+
+.party-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 15px;
+}
+
+.party-slot {
+  background: #2a2a2a;
+  padding: 10px 15px;
+  border-radius: 5px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-left: 5px solid #ff4757;
+}
+
+.type-Power { border-left-color: #ff4757; }
+.type-Speed { border-left-color: #2ed573; }
+.type-Magic { border-left-color: #1e90ff; }
+.type-Tactical { border-left-color: #ffa502; }
+
+/* Event Log */
+.log-box {
+  width: 100%;
+  max-width: 960px;
+  height: 120px;
+  background: #0a0a0a;
+  border: 1px solid #333;
+  border-radius: 5px;
+  padding: 10px;
+  overflow-y: auto;
+  margin-top: 20px;
+  font-family: monospace;
+  font-size: 14px;
+}
+
+.log-entry {
+  margin-bottom: 5px;
+}

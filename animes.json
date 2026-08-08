@@ -1,0 +1,32 @@
+{
+  "animes": [
+    {
+      "id": "naruto",
+      "title": "Naruto",
+      "enabled": true,
+      "characters": [
+        { "id": "naruto_kid", "name": "Naruto (Kid)", "type": "Tactical", "power": 45 },
+        { "id": "sasuke_kid", "name": "Sasuke (Kid)", "type": "Speed", "power": 48 },
+        { "id": "kakashi", "name": "Kakashi", "type": "Tactical", "power": 90 }
+      ],
+      "bosses": [
+        { "name": "Zabuza", "type": "Power", "requiredPower": 80 },
+        { "name": "Pain", "type": "Magic", "requiredPower": 220 }
+      ]
+    },
+    {
+      "id": "one_piece",
+      "title": "One Piece",
+      "enabled": true,
+      "characters": [
+        { "id": "luffy_base", "name": "Luffy", "type": "Power", "power": 50 },
+        { "id": "zoro_base", "name": "Zoro", "type": "Power", "power": 48 },
+        { "id": "nami", "name": "Nami", "type": "Magic", "power": 35 }
+      ],
+      "bosses": [
+        { "name": "Arlong", "type": "Power", "requiredPower": 75 },
+        { "name": "Kaido", "type": "Power", "requiredPower": 300 }
+      ]
+    }
+  ]
+}

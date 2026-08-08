@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Anime Roulette Game</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <h1>Anime Roulette Engine</h1>
+  <p>Spin the wheel to recruit characters, fight bosses, and gain power!</p>
+
+  <div class="container">
+    <div class="card wheel-section">
+      <div class="wheel-wrapper">
+        <div class="pointer"></div>
+        <canvas id="wheelCanvas" width="350" height="350"></canvas>
+      </div>
+      <button id="spinBtn">SPIN WHEEL</button>
+    </div>
+
+    <div class="card party-section">
+      <h2>Your Roster (<span id="partyCount">0</span>/6)</h2>
+      <p><strong>Total Team Power:</strong> <span id="totalPower">0</span></p>
+      <div id="partyList" class="party-list">
+        </div>
+    </div>
+  </div>
+
+  <div class="card log-box" id="gameLog">
+    <div class="log-entry">System ready. Click "SPIN WHEEL" to begin your adventure!</div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
