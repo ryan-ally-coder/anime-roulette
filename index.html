@@ -8,28 +8,72 @@
 </head>
 <body>
 
-  <h1>Anime Roulette Engine</h1>
-  <p>Spin the wheel to recruit characters, fight bosses, and gain power!</p>
+  <div class="app-header">
+    <h1>Anime Roulette Engine</h1>
+    <p>Stage <span id="stageCounter">1</span> | Spin the wheel to explore and fight bosses!</p>
+  </div>
 
-  <div class="container">
-    <div class="card wheel-section">
-      <div class="wheel-wrapper">
+  <div class="main-container">
+    <div class="card wheel-card">
+      <div class="wheel-box">
         <div class="pointer"></div>
-        <canvas id="wheelCanvas" width="350" height="350"></canvas>
+        <canvas id="wheelCanvas" width="340" height="340"></canvas>
       </div>
-      <button id="spinBtn">SPIN WHEEL</button>
+      <button id="spinBtn" class="primary-btn">SPIN WHEEL</button>
     </div>
 
-    <div class="card party-section">
+    <div class="card side-card">
       <h2>Your Roster (<span id="partyCount">0</span>/6)</h2>
-      <p><strong>Total Team Power:</strong> <span id="totalPower">0</span></p>
-      <div id="partyList" class="party-list">
-        </div>
+      <div id="partyList" class="roster-grid">
+        <p class="empty-msg">No characters recruited yet.</p>
+      </div>
+
+      <h2 style="margin-top: 24px;">Inventory</h2>
+      <div id="inventoryList" class="inventory-grid">
+        <p class="empty-msg">Inventory empty.</p>
+      </div>
     </div>
   </div>
 
-  <div class="card log-box" id="gameLog">
-    <div class="log-entry">System ready. Click "SPIN WHEEL" to begin your adventure!</div>
+  <div class="card log-card" id="gameLog">
+    <div class="log-entry">System ready. Click "SPIN WHEEL" to start your journey!</div>
+  </div>
+
+  <div id="encounterModal" class="modal hidden">
+    <div class="modal-content card">
+      <h2>Random Encounter!</h2>
+      <p>Spin to see who joins your team!</p>
+      <div class="wheel-box">
+        <div class="pointer"></div>
+        <canvas id="encounterCanvas" width="280" height="280"></canvas>
+      </div>
+      <button id="encounterSpinBtn" class="primary-btn">RECRUIT CHARACTER</button>
+    </div>
+  </div>
+
+  <div id="trainModal" class="modal hidden">
+    <div class="modal-content card">
+      <h2>Training Arc!</h2>
+      <p>Spin to select a character to evolve!</p>
+      <div class="wheel-box">
+        <div class="pointer"></div>
+        <canvas id="trainCanvas" width="280" height="280"></canvas>
+      </div>
+      <button id="trainSpinBtn" class="primary-btn">EVOLVE CHARACTER</button>
+    </div>
+  </div>
+
+  <div id="bossModal" class="modal hidden">
+    <div class="modal-content card">
+      <h2 id="bossModalTitle">Boss Battle!</h2>
+      <p id="bossModalDesc">Spin the Battle Wheel!</p>
+      <div class="wheel-box">
+        <div class="pointer"></div>
+        <canvas id="bossCanvas" width="280" height="280"></canvas>
+      </div>
+      <button id="bossSpinBtn" class="primary-btn">FIGHT BOSS</button>
+      <div id="battleStatusMsg" class="status-msg"></div>
+    </div>
   </div>
 
   <script src="app.js"></script>

@@ -5,13 +5,40 @@
       "title": "Naruto",
       "enabled": true,
       "characters": [
-        { "id": "naruto_kid", "name": "Naruto (Kid)", "type": "Tactical", "power": 45 },
-        { "id": "sasuke_kid", "name": "Sasuke (Kid)", "type": "Speed", "power": 48 },
-        { "id": "kakashi", "name": "Kakashi", "type": "Tactical", "power": 90 }
+        { "id": "naruto_kid", "name": "Naruto (Kid)", "type": "Tactical", "image": "https://raw.githubusercontent.com/Akinolaemmanuel/Anime-Assets/main/naruto_kid.png", "nextForm": "Naruto (Sage Mode)" },
+        { "id": "naruto_sage", "name": "Naruto (Sage Mode)", "type": "Tactical", "image": "https://raw.githubusercontent.com/Akinolaemmanuel/Anime-Assets/main/naruto_sage.png", "nextForm": "Naruto (KCM)" },
+        { "id": "naruto_kcm", "name": "Naruto (KCM)", "type": "Tactical", "image": "https://raw.githubusercontent.com/Akinolaemmanuel/Anime-Assets/main/naruto_kcm.png", "nextForm": "Naruto (Baryon Mode)" },
+        { "id": "naruto_baryon", "name": "Naruto (Baryon Mode)", "type": "Tactical", "image": "https://raw.githubusercontent.com/Akinolaemmanuel/Anime-Assets/main/naruto_baryon.png", "nextForm": null },
+        { "id": "sasuke_kid", "name": "Sasuke (Kid)", "type": "Speed", "image": "https://raw.githubusercontent.com/Akinolaemmanuel/Anime-Assets/main/sasuke_kid.png", "nextForm": "Sasuke (Shippuden)" },
+        { "id": "sasuke_ship", "name": "Sasuke (Shippuden)", "type": "Speed", "image": "https://raw.githubusercontent.com/Akinolaemmanuel/Anime-Assets/main/sasuke_shippuden.png", "nextForm": "Sasuke (Rinnegan)" },
+        { "id": "sasuke_rinne", "name": "Sasuke (Rinnegan)", "type": "Speed", "image": "https://raw.githubusercontent.com/Akinolaemmanuel/Anime-Assets/main/sasuke_rinnegan.png", "nextForm": null },
+        { "id": "sakura", "name": "Sakura", "type": "Tactical", "image": "https://raw.githubusercontent.com/Akinolaemmanuel/Anime-Assets/main/sakura.png", "nextForm": "Sakura (Hundred Seals)" },
+        { "id": "sakura_seals", "name": "Sakura (Hundred Seals)", "type": "Tactical", "image": "https://raw.githubusercontent.com/Akinolaemmanuel/Anime-Assets/main/sakura_seals.png", "nextForm": null },
+        { "id": "kakashi", "name": "Kakashi", "type": "Tactical", "image": "https://raw.githubusercontent.com/Akinolaemmanuel/Anime-Assets/main/kakashi.png", "nextForm": "Kakashi (DMS)" },
+        { "id": "kakashi_dms", "name": "Kakashi (DMS)", "type": "Tactical", "image": "https://raw.githubusercontent.com/Akinolaemmanuel/Anime-Assets/main/kakashi_dms.png", "nextForm": null },
+        { "id": "shikamaru", "name": "Shikamaru", "type": "Tactical", "image": "https://raw.githubusercontent.com/Akinolaemmanuel/Anime-Assets/main/shikamaru.png", "nextForm": null },
+        { "id": "choji", "name": "Choji", "type": "Power", "image": "https://raw.githubusercontent.com/Akinolaemmanuel/Anime-Assets/main/choji.png", "nextForm": null },
+        { "id": "ino", "name": "Ino", "type": "Tactical", "image": "https://raw.githubusercontent.com/Akinolaemmanuel/Anime-Assets/main/ino.png", "nextForm": null },
+        { "id": "rock_lee", "name": "Rock Lee", "type": "Speed", "image": "https://raw.githubusercontent.com/Akinolaemmanuel/Anime-Assets/main/rock_lee.png", "nextForm": "Rock Lee (8 Gates)" },
+        { "id": "rock_lee_gates", "name": "Rock Lee (8 Gates)", "type": "Speed", "image": "https://raw.githubusercontent.com/Akinolaemmanuel/Anime-Assets/main/rock_lee_8gates.png", "nextForm": null },
+        { "id": "neji", "name": "Neji", "type": "Speed", "image": "https://raw.githubusercontent.com/Akinolaemmanuel/Anime-Assets/main/neji.png", "nextForm": null },
+        { "id": "tenten", "name": "Tenten", "type": "Tactical", "image": "https://raw.githubusercontent.com/Akinolaemmanuel/Anime-Assets/main/tenten.png", "nextForm": null },
+        { "id": "gaara", "name": "Gaara", "type": "Power", "image": "https://raw.githubusercontent.com/Akinolaemmanuel/Anime-Assets/main/gaara.png", "nextForm": "Gaara (Kazekage)" },
+        { "id": "gaara_kazekage", "name": "Gaara (Kazekage)", "type": "Power", "image": "https://raw.githubusercontent.com/Akinolaemmanuel/Anime-Assets/main/gaara_kazekage.png", "nextForm": null },
+        { "id": "kankuro", "name": "Kankuro", "type": "Tactical", "image": "https://raw.githubusercontent.com/Akinolaemmanuel/Anime-Assets/main/kankuro.png", "nextForm": null },
+        { "id": "temari", "name": "Temari", "type": "Tactical", "image": "https://raw.githubusercontent.com/Akinolaemmanuel/Anime-Assets/main/temari.png", "nextForm": null },
+        { "id": "jiraiya", "name": "Jiraiya", "type": "Magic", "image": "https://raw.githubusercontent.com/Akinolaemmanuel/Anime-Assets/main/jiraiya.png", "nextForm": null },
+        { "id": "tsunade", "name": "Tsunade", "type": "Power", "image": "https://raw.githubusercontent.com/Akinolaemmanuel/Anime-Assets/main/tsunade.png", "nextForm": null },
+        { "id": "itachi", "name": "Itachi", "type": "Magic", "image": "https://raw.githubusercontent.com/Akinolaemmanuel/Anime-Assets/main/itachi.png", "nextForm": null }
       ],
       "bosses": [
-        { "name": "Zabuza", "type": "Power", "requiredPower": 80 },
-        { "name": "Pain", "type": "Magic", "requiredPower": 220 }
+        { "name": "Zabuza", "image": "https://raw.githubusercontent.com/Akinolaemmanuel/Anime-Assets/main/zabuza.png" },
+        { "name": "Gaara (Possessed)", "image": "https://raw.githubusercontent.com/Akinolaemmanuel/Anime-Assets/main/gaara.png" },
+        { "name": "Orochimaru", "image": "https://raw.githubusercontent.com/Akinolaemmanuel/Anime-Assets/main/orochimaru.png" },
+        { "name": "Pain", "image": "https://raw.githubusercontent.com/Akinolaemmanuel/Anime-Assets/main/pain.png" },
+        { "name": "Obito", "image": "https://raw.githubusercontent.com/Akinolaemmanuel/Anime-Assets/main/obito.png" },
+        { "name": "Madara", "image": "https://raw.githubusercontent.com/Akinolaemmanuel/Anime-Assets/main/madara.png" },
+        { "name": "Kaguya", "image": "https://raw.githubusercontent.com/Akinolaemmanuel/Anime-Assets/main/kaguya.png" }
       ]
     },
     {
@@ -19,13 +46,44 @@
       "title": "One Piece",
       "enabled": true,
       "characters": [
-        { "id": "luffy_base", "name": "Luffy", "type": "Power", "power": 50 },
-        { "id": "zoro_base", "name": "Zoro", "type": "Power", "power": 48 },
-        { "id": "nami", "name": "Nami", "type": "Magic", "power": 35 }
+        { "id": "luffy_kid", "name": "Luffy (Kid)", "type": "Power", "image": "https://raw.githubusercontent.com/Akinolaemmanuel/Anime-Assets/main/luffy_kid.png", "nextForm": "Luffy (Teen)" },
+        { "id": "luffy_teen", "name": "Luffy (Teen)", "type": "Power", "image": "https://raw.githubusercontent.com/Akinolaemmanuel/Anime-Assets/main/luffy.png", "nextForm": "Luffy (Emperor)" },
+        { "id": "luffy_emperor", "name": "Luffy (Emperor)", "type": "Power", "image": "https://raw.githubusercontent.com/Akinolaemmanuel/Anime-Assets/main/luffy_gear4.png", "nextForm": "Luffy (Gear 5)" },
+        { "id": "luffy_gear5", "name": "Luffy (Gear 5)", "type": "Power", "image": "https://raw.githubusercontent.com/Akinolaemmanuel/Anime-Assets/main/luffy_gear5.png", "nextForm": null },
+        { "id": "zoro_base", "name": "Zoro", "type": "Power", "image": "https://raw.githubusercontent.com/Akinolaemmanuel/Anime-Assets/main/zoro.png", "nextForm": "Zoro (King of Hell)" },
+        { "id": "zoro_koh", "name": "Zoro (King of Hell)", "type": "Power", "image": "https://raw.githubusercontent.com/Akinolaemmanuel/Anime-Assets/main/zoro_ashura.png", "nextForm": null },
+        { "id": "nami", "name": "Nami", "type": "Magic", "image": "https://raw.githubusercontent.com/Akinolaemmanuel/Anime-Assets/main/nami.png", "nextForm": "Nami (Zeus)" },
+        { "id": "nami_zeus", "name": "Nami (Zeus)", "type": "Magic", "image": "https://raw.githubusercontent.com/Akinolaemmanuel/Anime-Assets/main/nami_zeus.png", "nextForm": null },
+        { "id": "usopp", "name": "Usopp", "type": "Tactical", "image": "https://raw.githubusercontent.com/Akinolaemmanuel/Anime-Assets/main/usopp.png", "nextForm": "God Usopp" },
+        { "id": "god_usopp", "name": "God Usopp", "type": "Tactical", "image": "https://raw.githubusercontent.com/Akinolaemmanuel/Anime-Assets/main/god_usopp.png", "nextForm": null },
+        { "id": "sanji", "name": "Sanji", "type": "Speed", "image": "https://raw.githubusercontent.com/Akinolaemmanuel/Anime-Assets/main/sanji.png", "nextForm": "Sanji (Ifrit Jambe)" },
+        { "id": "sanji_ifrit", "name": "Sanji (Ifrit Jambe)", "type": "Speed", "image": "https://raw.githubusercontent.com/Akinolaemmanuel/Anime-Assets/main/sanji_ifrit.png", "nextForm": null },
+        { "id": "chopper", "name": "Chopper", "type": "Tactical", "image": "https://raw.githubusercontent.com/Akinolaemmanuel/Anime-Assets/main/chopper.png", "nextForm": "Chopper (Monster Point)" },
+        { "id": "chopper_monster", "name": "Chopper (Monster Point)", "type": "Tactical", "image": "https://raw.githubusercontent.com/Akinolaemmanuel/Anime-Assets/main/chopper_monster.png", "nextForm": null },
+        { "id": "robin", "name": "Nico Robin", "type": "Tactical", "image": "https://raw.githubusercontent.com/Akinolaemmanuel/Anime-Assets/main/robin.png", "nextForm": "Demon Fleur Robin" },
+        { "id": "robin_demon", "name": "Demon Fleur Robin", "type": "Tactical", "image": "https://raw.githubusercontent.com/Akinolaemmanuel/Anime-Assets/main/robin_demon.png", "nextForm": null },
+        { "id": "franky", "name": "Franky", "type": "Power", "image": "https://raw.githubusercontent.com/Akinolaemmanuel/Anime-Assets/main/franky.png", "nextForm": "General Franky" },
+        { "id": "general_franky", "name": "General Franky", "type": "Power", "image": "https://raw.githubusercontent.com/Akinolaemmanuel/Anime-Assets/main/general_franky.png", "nextForm": null },
+        { "id": "brook", "name": "Brook", "type": "Speed", "image": "https://raw.githubusercontent.com/Akinolaemmanuel/Anime-Assets/main/brook.png", "nextForm": "Soul King Brook" },
+        { "id": "brook_soul", "name": "Soul King Brook", "type": "Speed", "image": "https://raw.githubusercontent.com/Akinolaemmanuel/Anime-Assets/main/soul_king_brook.png", "nextForm": null },
+        { "id": "jinbe", "name": "Jinbe", "type": "Power", "image": "https://raw.githubusercontent.com/Akinolaemmanuel/Anime-Assets/main/jinbe.png", "nextForm": null },
+        { "id": "law", "name": "Trafalgar Law", "type": "Tactical", "image": "https://raw.githubusercontent.com/Akinolaemmanuel/Anime-Assets/main/law.png", "nextForm": "Law (Awakened)" },
+        { "id": "law_awakened", "name": "Law (Awakened)", "type": "Tactical", "image": "https://raw.githubusercontent.com/Akinolaemmanuel/Anime-Assets/main/law_awakened.png", "nextForm": null },
+        { "id": "kid", "name": "Eustass Kid", "type": "Power", "image": "https://raw.githubusercontent.com/Akinolaemmanuel/Anime-Assets/main/kid.png", "nextForm": "Kid (Awakened)" },
+        { "id": "kid_awakened", "name": "Kid (Awakened)", "type": "Power", "image": "https://raw.githubusercontent.com/Akinolaemmanuel/Anime-Assets/main/kid_awakened.png", "nextForm": null },
+        { "id": "yamato", "name": "Yamato", "type": "Power", "image": "https://raw.githubusercontent.com/Akinolaemmanuel/Anime-Assets/main/yamato.png", "nextForm": null },
+        { "id": "ace", "name": "Portgas D. Ace", "type": "Magic", "image": "https://raw.githubusercontent.com/Akinolaemmanuel/Anime-Assets/main/ace.png", "nextForm": null },
+        { "id": "sabo", "name": "Sabo", "type": "Magic", "image": "https://raw.githubusercontent.com/Akinolaemmanuel/Anime-Assets/main/sabo.png", "nextForm": null },
+        { "id": "shanks", "name": "Shanks", "type": "Power", "image": "https://raw.githubusercontent.com/Akinolaemmanuel/Anime-Assets/main/shanks.png", "nextForm": null }
       ],
       "bosses": [
-        { "name": "Arlong", "type": "Power", "requiredPower": 75 },
-        { "name": "Kaido", "type": "Power", "requiredPower": 300 }
+        { "name": "Buggy the Clown", "image": "https://raw.githubusercontent.com/Akinolaemmanuel/Anime-Assets/main/buggy.png" },
+        { "name": "Arlong", "image": "https://raw.githubusercontent.com/Akinolaemmanuel/Anime-Assets/main/arlong.png" },
+        { "name": "Crocodile", "image": "https://raw.githubusercontent.com/Akinolaemmanuel/Anime-Assets/main/crocodile.png" },
+        { "name": "Rob Lucci", "image": "https://raw.githubusercontent.com/Akinolaemmanuel/Anime-Assets/main/lucci.png" },
+        { "name": "Doflamingo", "image": "https://raw.githubusercontent.com/Akinolaemmanuel/Anime-Assets/main/doflamingo.png" },
+        { "name": "Kaido", "image": "https://raw.githubusercontent.com/Akinolaemmanuel/Anime-Assets/main/kaido.png" },
+        { "name": "Imu", "image": "https://raw.githubusercontent.com/Akinolaemmanuel/Anime-Assets/main/imu.png" }
       ]
     }
   ]
