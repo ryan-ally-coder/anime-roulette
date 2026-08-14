@@ -1,89 +1,339 @@
 {
   "animes": [
     {
-      "id": "naruto",
-      "title": "Naruto",
-      "enabled": true,
-      "characters": [
-        { "id": "naruto_kid", "name": "Naruto (Kid)", "type": "Tactical", "image": "https://raw.githubusercontent.com/Akinolaemmanuel/Anime-Assets/main/naruto_kid.png", "nextForm": "Naruto (Sage Mode)" },
-        { "id": "naruto_sage", "name": "Naruto (Sage Mode)", "type": "Tactical", "image": "https://raw.githubusercontent.com/Akinolaemmanuel/Anime-Assets/main/naruto_sage.png", "nextForm": "Naruto (KCM)" },
-        { "id": "naruto_kcm", "name": "Naruto (KCM)", "type": "Tactical", "image": "https://raw.githubusercontent.com/Akinolaemmanuel/Anime-Assets/main/naruto_kcm.png", "nextForm": "Naruto (Baryon Mode)" },
-        { "id": "naruto_baryon", "name": "Naruto (Baryon Mode)", "type": "Tactical", "image": "https://raw.githubusercontent.com/Akinolaemmanuel/Anime-Assets/main/naruto_baryon.png", "nextForm": null },
-        { "id": "sasuke_kid", "name": "Sasuke (Kid)", "type": "Speed", "image": "https://raw.githubusercontent.com/Akinolaemmanuel/Anime-Assets/main/sasuke_kid.png", "nextForm": "Sasuke (Shippuden)" },
-        { "id": "sasuke_ship", "name": "Sasuke (Shippuden)", "type": "Speed", "image": "https://raw.githubusercontent.com/Akinolaemmanuel/Anime-Assets/main/sasuke_shippuden.png", "nextForm": "Sasuke (Rinnegan)" },
-        { "id": "sasuke_rinne", "name": "Sasuke (Rinnegan)", "type": "Speed", "image": "https://raw.githubusercontent.com/Akinolaemmanuel/Anime-Assets/main/sasuke_rinnegan.png", "nextForm": null },
-        { "id": "sakura", "name": "Sakura", "type": "Tactical", "image": "https://raw.githubusercontent.com/Akinolaemmanuel/Anime-Assets/main/sakura.png", "nextForm": "Sakura (Hundred Seals)" },
-        { "id": "sakura_seals", "name": "Sakura (Hundred Seals)", "type": "Tactical", "image": "https://raw.githubusercontent.com/Akinolaemmanuel/Anime-Assets/main/sakura_seals.png", "nextForm": null },
-        { "id": "kakashi", "name": "Kakashi", "type": "Tactical", "image": "https://raw.githubusercontent.com/Akinolaemmanuel/Anime-Assets/main/kakashi.png", "nextForm": "Kakashi (DMS)" },
-        { "id": "kakashi_dms", "name": "Kakashi (DMS)", "type": "Tactical", "image": "https://raw.githubusercontent.com/Akinolaemmanuel/Anime-Assets/main/kakashi_dms.png", "nextForm": null },
-        { "id": "shikamaru", "name": "Shikamaru", "type": "Tactical", "image": "https://raw.githubusercontent.com/Akinolaemmanuel/Anime-Assets/main/shikamaru.png", "nextForm": null },
-        { "id": "choji", "name": "Choji", "type": "Power", "image": "https://raw.githubusercontent.com/Akinolaemmanuel/Anime-Assets/main/choji.png", "nextForm": null },
-        { "id": "ino", "name": "Ino", "type": "Tactical", "image": "https://raw.githubusercontent.com/Akinolaemmanuel/Anime-Assets/main/ino.png", "nextForm": null },
-        { "id": "rock_lee", "name": "Rock Lee", "type": "Speed", "image": "https://raw.githubusercontent.com/Akinolaemmanuel/Anime-Assets/main/rock_lee.png", "nextForm": "Rock Lee (8 Gates)" },
-        { "id": "rock_lee_gates", "name": "Rock Lee (8 Gates)", "type": "Speed", "image": "https://raw.githubusercontent.com/Akinolaemmanuel/Anime-Assets/main/rock_lee_8gates.png", "nextForm": null },
-        { "id": "neji", "name": "Neji", "type": "Speed", "image": "https://raw.githubusercontent.com/Akinolaemmanuel/Anime-Assets/main/neji.png", "nextForm": null },
-        { "id": "tenten", "name": "Tenten", "type": "Tactical", "image": "https://raw.githubusercontent.com/Akinolaemmanuel/Anime-Assets/main/tenten.png", "nextForm": null },
-        { "id": "gaara", "name": "Gaara", "type": "Power", "image": "https://raw.githubusercontent.com/Akinolaemmanuel/Anime-Assets/main/gaara.png", "nextForm": "Gaara (Kazekage)" },
-        { "id": "gaara_kazekage", "name": "Gaara (Kazekage)", "type": "Power", "image": "https://raw.githubusercontent.com/Akinolaemmanuel/Anime-Assets/main/gaara_kazekage.png", "nextForm": null },
-        { "id": "kankuro", "name": "Kankuro", "type": "Tactical", "image": "https://raw.githubusercontent.com/Akinolaemmanuel/Anime-Assets/main/kankuro.png", "nextForm": null },
-        { "id": "temari", "name": "Temari", "type": "Tactical", "image": "https://raw.githubusercontent.com/Akinolaemmanuel/Anime-Assets/main/temari.png", "nextForm": null },
-        { "id": "jiraiya", "name": "Jiraiya", "type": "Magic", "image": "https://raw.githubusercontent.com/Akinolaemmanuel/Anime-Assets/main/jiraiya.png", "nextForm": null },
-        { "id": "tsunade", "name": "Tsunade", "type": "Power", "image": "https://raw.githubusercontent.com/Akinolaemmanuel/Anime-Assets/main/tsunade.png", "nextForm": null },
-        { "id": "itachi", "name": "Itachi", "type": "Magic", "image": "https://raw.githubusercontent.com/Akinolaemmanuel/Anime-Assets/main/itachi.png", "nextForm": null }
-      ],
-      "bosses": [
-        { "name": "Zabuza", "image": "https://raw.githubusercontent.com/Akinolaemmanuel/Anime-Assets/main/zabuza.png" },
-        { "name": "Gaara (Possessed)", "image": "https://raw.githubusercontent.com/Akinolaemmanuel/Anime-Assets/main/gaara.png" },
-        { "name": "Orochimaru", "image": "https://raw.githubusercontent.com/Akinolaemmanuel/Anime-Assets/main/orochimaru.png" },
-        { "name": "Pain", "image": "https://raw.githubusercontent.com/Akinolaemmanuel/Anime-Assets/main/pain.png" },
-        { "name": "Obito", "image": "https://raw.githubusercontent.com/Akinolaemmanuel/Anime-Assets/main/obito.png" },
-        { "name": "Madara", "image": "https://raw.githubusercontent.com/Akinolaemmanuel/Anime-Assets/main/madara.png" },
-        { "name": "Kaguya", "image": "https://raw.githubusercontent.com/Akinolaemmanuel/Anime-Assets/main/kaguya.png" }
-      ]
-    },
-    {
       "id": "one_piece",
       "title": "One Piece",
       "enabled": true,
       "characters": [
-        { "id": "luffy_kid", "name": "Luffy (Kid)", "type": "Power", "image": "https://raw.githubusercontent.com/Akinolaemmanuel/Anime-Assets/main/luffy_kid.png", "nextForm": "Luffy (Teen)" },
-        { "id": "luffy_teen", "name": "Luffy (Teen)", "type": "Power", "image": "https://raw.githubusercontent.com/Akinolaemmanuel/Anime-Assets/main/luffy.png", "nextForm": "Luffy (Emperor)" },
-        { "id": "luffy_emperor", "name": "Luffy (Emperor)", "type": "Power", "image": "https://raw.githubusercontent.com/Akinolaemmanuel/Anime-Assets/main/luffy_gear4.png", "nextForm": "Luffy (Gear 5)" },
-        { "id": "luffy_gear5", "name": "Luffy (Gear 5)", "type": "Power", "image": "https://raw.githubusercontent.com/Akinolaemmanuel/Anime-Assets/main/luffy_gear5.png", "nextForm": null },
-        { "id": "zoro_base", "name": "Zoro", "type": "Power", "image": "https://raw.githubusercontent.com/Akinolaemmanuel/Anime-Assets/main/zoro.png", "nextForm": "Zoro (King of Hell)" },
-        { "id": "zoro_koh", "name": "Zoro (King of Hell)", "type": "Power", "image": "https://raw.githubusercontent.com/Akinolaemmanuel/Anime-Assets/main/zoro_ashura.png", "nextForm": null },
-        { "id": "nami", "name": "Nami", "type": "Magic", "image": "https://raw.githubusercontent.com/Akinolaemmanuel/Anime-Assets/main/nami.png", "nextForm": "Nami (Zeus)" },
-        { "id": "nami_zeus", "name": "Nami (Zeus)", "type": "Magic", "image": "https://raw.githubusercontent.com/Akinolaemmanuel/Anime-Assets/main/nami_zeus.png", "nextForm": null },
-        { "id": "usopp", "name": "Usopp", "type": "Tactical", "image": "https://raw.githubusercontent.com/Akinolaemmanuel/Anime-Assets/main/usopp.png", "nextForm": "God Usopp" },
-        { "id": "god_usopp", "name": "God Usopp", "type": "Tactical", "image": "https://raw.githubusercontent.com/Akinolaemmanuel/Anime-Assets/main/god_usopp.png", "nextForm": null },
-        { "id": "sanji", "name": "Sanji", "type": "Speed", "image": "https://raw.githubusercontent.com/Akinolaemmanuel/Anime-Assets/main/sanji.png", "nextForm": "Sanji (Ifrit Jambe)" },
-        { "id": "sanji_ifrit", "name": "Sanji (Ifrit Jambe)", "type": "Speed", "image": "https://raw.githubusercontent.com/Akinolaemmanuel/Anime-Assets/main/sanji_ifrit.png", "nextForm": null },
-        { "id": "chopper", "name": "Chopper", "type": "Tactical", "image": "https://raw.githubusercontent.com/Akinolaemmanuel/Anime-Assets/main/chopper.png", "nextForm": "Chopper (Monster Point)" },
-        { "id": "chopper_monster", "name": "Chopper (Monster Point)", "type": "Tactical", "image": "https://raw.githubusercontent.com/Akinolaemmanuel/Anime-Assets/main/chopper_monster.png", "nextForm": null },
-        { "id": "robin", "name": "Nico Robin", "type": "Tactical", "image": "https://raw.githubusercontent.com/Akinolaemmanuel/Anime-Assets/main/robin.png", "nextForm": "Demon Fleur Robin" },
-        { "id": "robin_demon", "name": "Demon Fleur Robin", "type": "Tactical", "image": "https://raw.githubusercontent.com/Akinolaemmanuel/Anime-Assets/main/robin_demon.png", "nextForm": null },
-        { "id": "franky", "name": "Franky", "type": "Power", "image": "https://raw.githubusercontent.com/Akinolaemmanuel/Anime-Assets/main/franky.png", "nextForm": "General Franky" },
-        { "id": "general_franky", "name": "General Franky", "type": "Power", "image": "https://raw.githubusercontent.com/Akinolaemmanuel/Anime-Assets/main/general_franky.png", "nextForm": null },
-        { "id": "brook", "name": "Brook", "type": "Speed", "image": "https://raw.githubusercontent.com/Akinolaemmanuel/Anime-Assets/main/brook.png", "nextForm": "Soul King Brook" },
-        { "id": "brook_soul", "name": "Soul King Brook", "type": "Speed", "image": "https://raw.githubusercontent.com/Akinolaemmanuel/Anime-Assets/main/soul_king_brook.png", "nextForm": null },
-        { "id": "jinbe", "name": "Jinbe", "type": "Power", "image": "https://raw.githubusercontent.com/Akinolaemmanuel/Anime-Assets/main/jinbe.png", "nextForm": null },
-        { "id": "law", "name": "Trafalgar Law", "type": "Tactical", "image": "https://raw.githubusercontent.com/Akinolaemmanuel/Anime-Assets/main/law.png", "nextForm": "Law (Awakened)" },
-        { "id": "law_awakened", "name": "Law (Awakened)", "type": "Tactical", "image": "https://raw.githubusercontent.com/Akinolaemmanuel/Anime-Assets/main/law_awakened.png", "nextForm": null },
-        { "id": "kid", "name": "Eustass Kid", "type": "Power", "image": "https://raw.githubusercontent.com/Akinolaemmanuel/Anime-Assets/main/kid.png", "nextForm": "Kid (Awakened)" },
-        { "id": "kid_awakened", "name": "Kid (Awakened)", "type": "Power", "image": "https://raw.githubusercontent.com/Akinolaemmanuel/Anime-Assets/main/kid_awakened.png", "nextForm": null },
-        { "id": "yamato", "name": "Yamato", "type": "Power", "image": "https://raw.githubusercontent.com/Akinolaemmanuel/Anime-Assets/main/yamato.png", "nextForm": null },
-        { "id": "ace", "name": "Portgas D. Ace", "type": "Magic", "image": "https://raw.githubusercontent.com/Akinolaemmanuel/Anime-Assets/main/ace.png", "nextForm": null },
-        { "id": "sabo", "name": "Sabo", "type": "Magic", "image": "https://raw.githubusercontent.com/Akinolaemmanuel/Anime-Assets/main/sabo.png", "nextForm": null },
-        { "id": "shanks", "name": "Shanks", "type": "Power", "image": "https://raw.githubusercontent.com/Akinolaemmanuel/Anime-Assets/main/shanks.png", "nextForm": null }
+        { "id": "luffy_1", "name": "Monkey D. Luffy (Base)", "image": "images/Monkey D. luffy (Base).png", "nextForm": "luffy (Gear 2)" },
+        { "id": "luffy_2", "name": "luffy (Gear 2)", "image": "images/luffy (Gear 2).png", "nextForm": "luffy (Gear 4)" },
+        { "id": "luffy_3", "name": "luffy (Gear 4)", "image": "images/luffy (Gear 4).png", "nextForm": "luffy (Gear 5)" },
+        { "id": "luffy_4", "name": "luffy (Gear 5)", "image": "images/luffy (Gear 5).png", "nextForm": null },
+
+        { "id": "zoro_1", "name": "Roronoa Zoro (East Blue)", "image": "images/Roronoa Zoro (East Blue).png", "nextForm": "Zoro (Asura)" },
+        { "id": "zoro_2", "name": "Zoro (Asura)", "image": "images/Zoro (Asura).png", "nextForm": "Zoro (Enma Mastery)" },
+        { "id": "zoro_3", "name": "Zoro (Enma Mastery)", "image": "images/Zoro (Enma Mastery).png", "nextForm": "Zoro (King of Hell)" },
+        { "id": "zoro_4", "name": "Zoro (King of Hell)", "image": "images/Zoro (King of Hell).png", "nextForm": null },
+
+        { "id": "nami_1", "name": "Nami (Clima-Tact)", "image": "images/Nami (Clima-Tact).png", "nextForm": "Nami (Perfect Clima-Tact)" },
+        { "id": "nami_2", "name": "Nami (Perfect Clima-Tact)", "image": "images/Nami (Perfect Clima-Tact).png", "nextForm": "Nami (Sorcery Clima-Tact)" },
+        { "id": "nami_3", "name": "Nami (Sorcery Clima-Tact)", "image": "images/Nami (Sorcery Clima-Tact).png", "nextForm": "Nami (Zeus Fusion)" },
+        { "id": "nami_4", "name": "Nami (Zeus Fusion)", "image": "images/Nami (Zeus Fusion).png", "nextForm": null },
+
+        { "id": "usopp_1", "name": "Usopp (Slingshot)", "image": "images/Usopp (Slingshot).png", "nextForm": "Usopp (Sogeking)" },
+        { "id": "usopp_2", "name": "Usopp (Sogeking)", "image": "images/Usopp (Sogeking).png", "nextForm": "Usopp (Kabuto)" },
+        { "id": "usopp_3", "name": "Usopp (Kabuto)", "image": "images/Usopp (Kabuto).png", "nextForm": "Usopp (God Usopp)" },
+        { "id": "usopp_4", "name": "Usopp (God Usopp)", "image": "images/Usopp (God Usopp).png", "nextForm": null },
+
+        { "id": "sanji_1", "name": "Sanji (Black Leg)", "image": "images/Sanji (Black Leg).png", "nextForm": "Sanji (Diable Jambe)" },
+        { "id": "sanji_2", "name": "Sanji (Diable Jambe)", "image": "images/Sanji (Diable Jambe).png", "nextForm": "Sanji (Raid Suit)" },
+        { "id": "sanji_3", "name": "Sanji (Raid Suit)", "image": "images/Sanji (Raid Suit).png", "nextForm": "Sanji (Ifrit Jambe)" },
+        { "id": "sanji_4", "name": "Sanji (Ifrit Jambe)", "image": "images/Sanji (Ifrit Jambe).png", "nextForm": null },
+
+        { "id": "chopper_1", "name": "Tony Tony Chopper (Brain Point)", "image": "images/Tony Tony Chopper (Brain Point).png", "nextForm": "Chopper (Rumble Ball)" },
+        { "id": "chopper_2", "name": "Chopper (Rumble Ball)", "image": "images/Chopper (Rumble Ball).png", "nextForm": "Chopper (Monster Point)" },
+        { "id": "chopper_3", "name": "Chopper (Monster Point)", "image": "images/Chopper (Monster Point).png", "nextForm": "Chopper (Controlled Monster Point)" },
+        { "id": "chopper_4", "name": "Chopper (Controlled Monster Point)", "image": "images/Chopper (Controlled Monster Point).png", "nextForm": null },
+
+        { "id": "robin_1", "name": "Nico Robin (Tres Fleurs)", "image": "images/Nico Robin (Tres Fleurs).png", "nextForm": "Robin (Cien Fleurs)" },
+        { "id": "robin_2", "name": "Robin (Cien Fleurs)", "image": "images/Robin (Cien Fleurs).png", "nextForm": "Robin (Gigantesco Mano)" },
+        { "id": "robin_3", "name": "Robin (Gigantesco Mano)", "image": "images/Robin (Gigantesco Mano).png", "nextForm": "Robin (Demonio Fleur)" },
+        { "id": "robin_4", "name": "Robin (Demonio Fleur)", "image": "images/Robin (Demonio Fleur).png", "nextForm": null },
+
+        { "id": "law_1", "name": "Trafalgar D. Law (Supernova)", "image": "images/Trafalgar D. Law (Supernova).png", "nextForm": "Law (Warlord)" },
+        { "id": "law_2", "name": "Law (Warlord)", "image": "images/Law (Warlord).png", "nextForm": "Law (Ope Ope Awakening)" },
+        { "id": "law_3", "name": "Law (Ope Ope Awakening)", "image": "images/Law (Ope Ope Awakening).png", "nextForm": null },
+
+        { "id": "kid_1", "name": "Eustass Kid (Supernova)", "image": "images/Eustass Kid (Supernova).png", "nextForm": "Kid (Punk Rotten)" },
+        { "id": "kid_2", "name": "Kid (Punk Rotten)", "image": "images/Kid (Punk Rotten).png", "nextForm": "Kid (Magnet Awakening)" },
+        { "id": "kid_3", "name": "Kid (Magnet Awakening)", "image": "images/Kid (Magnet Awakening).png", "nextForm": null },
+
+        { "id": "franky_1", "name": "Franky (Cyborg)", "image": "images/Franky (Cyborg).png", "nextForm": "Franky (Franky Shogun)" },
+        { "id": "franky_2", "name": "Franky (Franky Shogun)", "image": "images/Franky (Franky Shogun).png", "nextForm": null },
+
+        { "id": "brook_1", "name": "Brook (Humming Swordsman)", "image": "images/Brook (Humming Swordsman).png", "nextForm": "Brook (Soul King)" },
+        { "id": "brook_2", "name": "Brook (Soul King)", "image": "images/Brook (Soul King).png", "nextForm": null },
+
+        { "id": "jinbe_1", "name": "Jinbe (Warlord)", "image": "images/Jinbe (Warlord).png", "nextForm": "Jinbe (Straw Hat Helmsman)" },
+        { "id": "jinbe_2", "name": "Jinbe (Straw Hat Helmsman)", "image": "images/Jinbe (Straw Hat Helmsman).png", "nextForm": null },
+
+        { "id": "ace_1", "name": "Portgas D. Ace (Base)", "image": "images/Portgas D. Ace (Base).png", "nextForm": "Ace (Flame Emperor)" },
+        { "id": "ace_2", "name": "Ace (Flame Emperor)", "image": "images/Ace (Flame Emperor).png", "nextForm": null },
+
+        { "id": "doflamingo_1", "name": "Donquixote Doflamingo (Base)", "image": "images/Donquixote Doflamingo (Base).png", "nextForm": "Doflamingo (Awakened Thread)" },
+        { "id": "doflamingo_2", "name": "Doflamingo (Awakened Thread)", "image": "images/Doflamingo (Awakened Thread).png", "nextForm": null },
+
+        { "id": "shanks", "name": "Shanks", "image": "images/Shanks.png", "nextForm": null },
+        { "id": "hancock", "name": "Boa Hancock", "image": "images/Boa Hancock.png", "nextForm": null },
+        { "id": "mihawk", "name": "Dracule Mihawk", "image": "images/Dracule Mihawk.png", "nextForm": null },
+        { "id": "roger", "name": "Gol D. Roger", "image": "images/Gol D. Roger.png", "nextForm": null }
       ],
       "bosses": [
-        { "name": "Buggy the Clown", "image": "https://raw.githubusercontent.com/Akinolaemmanuel/Anime-Assets/main/buggy.png" },
-        { "name": "Arlong", "image": "https://raw.githubusercontent.com/Akinolaemmanuel/Anime-Assets/main/arlong.png" },
-        { "name": "Crocodile", "image": "https://raw.githubusercontent.com/Akinolaemmanuel/Anime-Assets/main/crocodile.png" },
-        { "name": "Rob Lucci", "image": "https://raw.githubusercontent.com/Akinolaemmanuel/Anime-Assets/main/lucci.png" },
-        { "name": "Doflamingo", "image": "https://raw.githubusercontent.com/Akinolaemmanuel/Anime-Assets/main/doflamingo.png" },
-        { "name": "Kaido", "image": "https://raw.githubusercontent.com/Akinolaemmanuel/Anime-Assets/main/kaido.png" },
-        { "name": "Imu", "image": "https://raw.githubusercontent.com/Akinolaemmanuel/Anime-Assets/main/imu.png" }
+        { "name": "Kaido (Base)", "image": "images/Kaido (Base).png" },
+        { "name": "Kaido (Full Dragon Form)", "image": "images/Kaido (Full Dragon Form).png" },
+        { "name": "Kaido (Hybrid Form)", "image": "images/Kaido (Hybrid Form).png" },
+        { "name": "Kaido (Flame Dragon Torch)", "image": "images/Kaido (Flame Dragon Torch).png" },
+        { "name": "Big Mom (Charlotte Linlin)", "image": "images/Big Mom (Charlotte Linlin).png" }
+      ]
+    },
+    {
+      "id": "naruto",
+      "title": "Naruto",
+      "enabled": true,
+      "characters": [
+        { "id": "naruto_1", "name": "Naruto Uzumaki (Kid)", "image": "images/Naruto Uzumaki (Kid).png", "nextForm": "Naruto (One-Tail)" },
+        { "id": "naruto_2", "name": "Naruto (One-Tail)", "image": "images/Naruto (One-Tail).png", "nextForm": "Naruto (Sage Mode)" },
+        { "id": "naruto_3", "name": "Naruto (Sage Mode)", "image": "images/Naruto (Sage Mode).png", "nextForm": "Naruto (Kyuubi Mode)" },
+        { "id": "naruto_4", "name": "Naruto (Kyuubi Mode)", "image": "images/Naruto (Kyuubi Mode).png", "nextForm": "Naruto (Six Paths)" },
+        { "id": "naruto_5", "name": "Naruto (Six Paths)", "image": "images/Naruto (Six Paths).png", "nextForm": "Naruto (Baryon Mode)" },
+        { "id": "naruto_6", "name": "Naruto (Baryon Mode)", "image": "images/Naruto (Baryon Mode).png", "nextForm": null },
+
+        { "id": "sasuke_1", "name": "Sasuke Uchiha (Base)", "image": "images/Sasuke Uchiha (Base).png", "nextForm": "Sasuke (Curse Mark)" },
+        { "id": "sasuke_2", "name": "Sasuke (Curse Mark)", "image": "images/Sasuke (Curse Mark).png", "nextForm": "Sasuke (Mangekyo Sharingan)" },
+        { "id": "sasuke_3", "name": "Sasuke (Mangekyo Sharingan)", "image": "images/Sasuke (Mangekyo Sharingan).png", "nextForm": "Sasuke (Rinnegan)" },
+        { "id": "sasuke_4", "name": "Sasuke (Rinnegan)", "image": "images/Sasuke (Rinnegan).png", "nextForm": "Sasuke (Indra Susanoo)" },
+        { "id": "sasuke_5", "name": "Sasuke (Indra Susanoo)", "image": "images/Sasuke (Indra Susanoo).png", "nextForm": null },
+
+        { "id": "sakura_1", "name": "Sakura Haruno (Genin)", "image": "images/Sakura Haruno (Genin).png", "nextForm": "Sakura (Medical Ninja)" },
+        { "id": "sakura_2", "name": "Sakura (Medical Ninja)", "image": "images/Sakura (Medical Ninja).png", "nextForm": "Sakura (Cherry Blossom Impact)" },
+        { "id": "sakura_3", "name": "Sakura (Cherry Blossom Impact)", "image": "images/Sakura (Cherry Blossom Impact).png", "nextForm": "Sakura (Hundred Healings Mark)" },
+        { "id": "sakura_4", "name": "Sakura (Hundred Healings Mark)", "image": "images/Sakura (Hundred Healings Mark).png", "nextForm": null },
+
+        { "id": "kakashi_1", "name": "Kakashi Hatake (Jonin)", "image": "images/Kakashi Hatake (Jonin).png", "nextForm": "Kakashi (Sharingan)" },
+        { "id": "kakashi_2", "name": "Kakashi (Sharingan)", "image": "images/Kakashi (Sharingan).png", "nextForm": "Kakashi (Dual Sharingan Susanoo)" },
+        { "id": "kakashi_3", "name": "Kakashi (Dual Sharingan Susanoo)", "image": "images/Kakashi (Dual Sharingan Susanoo).png", "nextForm": null },
+
+        { "id": "gaara_1", "name": "Gaara (Genin)", "image": "images/Gaara (Genin).png", "nextForm": "Gaara (Partial Shukaku)" },
+        { "id": "gaara_2", "name": "Gaara (Partial Shukaku)", "image": "images/Gaara (Partial Shukaku).png", "nextForm": "Gaara (Kazekage)" },
+        { "id": "gaara_3", "name": "Gaara (Kazekage)", "image": "images/Gaara (Kazekage).png", "nextForm": "Gaara (Desert Layered Imperial Tomb)" },
+        { "id": "gaara_4", "name": "Gaara (Desert Layered Imperial Tomb)", "image": "images/Gaara (Desert Layered Imperial Tomb).png", "nextForm": null },
+
+        { "id": "lee_1", "name": "Rock Lee (Genin)", "image": "images/Rock Lee (Genin).png", "nextForm": "Rock Lee (Drunken Fist)" },
+        { "id": "lee_2", "name": "Rock Lee (Drunken Fist)", "image": "images/Rock Lee (Drunken Fist).png", "nextForm": "Rock Lee (5th Gate)" },
+        { "id": "lee_3", "name": "Rock Lee (5th Gate)", "image": "images/Rock Lee (5th Gate).png", "nextForm": "Rock Lee (6th Gate)" },
+        { "id": "lee_4", "name": "Rock Lee (6th Gate)", "image": "images/Rock Lee (6th Gate).png", "nextForm": null },
+
+        { "id": "guy_1", "name": "Might Guy (Jonin)", "image": "images/Might Guy (Jonin).png", "nextForm": "Guy (6th Gate)" },
+        { "id": "guy_2", "name": "Guy (6th Gate)", "image": "images/Guy (6th Gate).png", "nextForm": "Guy (7th Gate)" },
+        { "id": "guy_3", "name": "Guy (7th Gate)", "image": "images/Guy (7th Gate).png", "nextForm": "Guy (8th Gate - Night Guy)" },
+        { "id": "guy_4", "name": "Guy (8th Gate - Night Guy)", "image": "images/Guy (8th Gate - Night Guy).png", "nextForm": null },
+
+        { "id": "obito_1", "name": "Obito Uchiha (Genin)", "image": "images/Obito Uchiha (Genin).png", "nextForm": "Obito (Rinnegan Tobi)" },
+        { "id": "obito_2", "name": "Obito (Rinnegan Tobi)", "image": "images/Obito (Rinnegan Tobi).png", "nextForm": "Obito (Ten-Tails Jinchuriki)" },
+        { "id": "obito_3", "name": "Obito (Ten-Tails Jinchuriki)", "image": "images/Obito (Ten-Tails Jinchuriki).png", "nextForm": null },
+
+        { "id": "minato_1", "name": "Minato Namikaze (Jonin)", "image": "images/Minato Namikaze (Jonin).png", "nextForm": "Minato (Sage Mode)" },
+        { "id": "minato_2", "name": "Minato (Sage Mode)", "image": "images/Minato (Sage Mode).png", "nextForm": "Minato (Kyuubi Chakra Mode)" },
+        { "id": "minato_3", "name": "Minato (Kyuubi Chakra Mode)", "image": "images/Minato (Kyuubi Chakra Mode).png", "nextForm": null },
+
+        { "id": "jiraiya_1", "name": "Jiraiya (Base)", "image": "images/Jiraiya (Base).png", "nextForm": "Jiraiya (Toad Sage Mode)" },
+        { "id": "jiraiya_2", "name": "Jiraiya (Toad Sage Mode)", "image": "images/Jiraiya (Toad Sage Mode).png", "nextForm": null },
+
+        { "id": "tsunade_1", "name": "Tsunade (Base)", "image": "images/Tsunade (Base).png", "nextForm": "Tsunade (Mitotic Regeneration)" },
+        { "id": "tsunade_2", "name": "Tsunade (Mitotic Regeneration)", "image": "images/Tsunade (Mitotic Regeneration).png", "nextForm": null },
+
+        { "id": "orochimaru_1", "name": "Orochimaru (Base)", "image": "images/Orochimaru (Base).png", "nextForm": "Orochimaru (Eight Branches Snake Form)" },
+        { "id": "orochimaru_2", "name": "Orochimaru (Eight Branches Snake Form)", "image": "images/Orochimaru (Eight Branches Snake Form).png", "nextForm": null },
+
+        { "id": "itachi_1", "name": "Itachi Uchiha (Base)", "image": "images/Itachi Uchiha (Base).png", "nextForm": "Itachi (Armored Susanoo)" },
+        { "id": "itachi_2", "name": "Itachi (Armored Susanoo)", "image": "images/Itachi (Armored Susanoo).png", "nextForm": null },
+
+        { "id": "pain_1", "name": "Pain (Nagato) (Base)", "image": "images/Pain (Nagato) (Base).png", "nextForm": "Pain (Six Paths of Pain)" },
+        { "id": "pain_2", "name": "Pain (Six Paths of Pain)", "image": "images/Pain (Six Paths of Pain).png", "nextForm": null },
+
+        { "id": "shikamaru", "name": "Shikamaru Nara", "image": "images/Shikamaru Nara.png", "nextForm": null },
+        { "id": "hinata", "name": "Hinata Hyuga", "image": "images/Hinata Hyuga.png", "nextForm": null },
+        { "id": "neji", "name": "Neji Hyuga", "image": "images/Neji Hyuga.png", "nextForm": null },
+        { "id": "kushina", "name": "Kushina Uzumaki", "image": "images/Kushina Uzumaki.png", "nextForm": null },
+        { "id": "sai", "name": "Sai", "image": "images/Sai.png", "nextForm": null }
+      ],
+      "bosses": [
+        { "name": "Madara Uchiha (Base)", "image": "images/Madara Uchiha (Base).png" },
+        { "name": "Madara (Rinnegan Perfect Susanoo)", "image": "images/Madara (Rinnegan Perfect Susanoo).png" },
+        { "name": "Madara (Ten-Tails Jinchuriki)", "image": "images/Madara (Ten-Tails Jinchuriki).png" }
+      ]
+    },
+    {
+      "id": "aot",
+      "title": "Attack on Titan",
+      "enabled": true,
+      "characters": [
+        { "id": "eren_1", "name": "Eren Yeager (Cadet)", "image": "images/Eren Yeager (Cadet).png", "nextForm": "Eren (Attack Titan)" },
+        { "id": "eren_2", "name": "Eren (Attack Titan)", "image": "images/Eren (Attack Titan).png", "nextForm": "Eren (Hardened Form)" },
+        { "id": "eren_3", "name": "Eren (Hardened Form)", "image": "images/Eren (Hardened Form).png", "nextForm": "Eren (Founding Titan Rumbling)" },
+        { "id": "eren_4", "name": "Eren (Founding Titan Rumbling)", "image": "images/Eren (Founding Titan Rumbling).png", "nextForm": null },
+
+        { "id": "armin_1", "name": "Armin Arlert (Cadet)", "image": "images/Armin Arlert (Cadet).png", "nextForm": "Armin (Scout Tactician)" },
+        { "id": "armin_2", "name": "Armin (Scout Tactician)", "image": "images/Armin (Scout Tactician).png", "nextForm": "Armin (Colossal Titan)" },
+        { "id": "armin_3", "name": "Armin (Colossal Titan)", "image": "images/Armin (Colossal Titan).png", "nextForm": null },
+
+        { "id": "levi_1", "name": "Levi (Squad Leader)", "image": "images/Levi (Squad Leader).png", "nextForm": "Levi (Spinning Slash Master)" },
+        { "id": "levi_2", "name": "Levi (Spinning Slash Master)", "image": "images/Levi (Spinning Slash Master).png", "nextForm": null },
+
+        { "id": "reiner_1", "name": "Reiner Braun (Cadet)", "image": "images/Reiner Braun (Cadet).png", "nextForm": "Reiner (Armored Titan)" },
+        { "id": "reiner_2", "name": "Reiner (Armored Titan)", "image": "images/Reiner (Armored Titan).png", "nextForm": "Reiner (Hardened Body)" },
+        { "id": "reiner_3", "name": "Reiner (Hardened Body)", "image": "images/Reiner (Hardened Body).png", "nextForm": null },
+
+        { "id": "bertholdt_1", "name": "Bertholdt Hoover (Cadet)", "image": "images/Bertholdt Hoover (Cadet).png", "nextForm": "Bertholdt (Colossal Titan)" },
+        { "id": "bertholdt_2", "name": "Bertholdt (Colossal Titan)", "image": "images/Bertholdt (Colossal Titan).png", "nextForm": "Bertholdt (Steam Emission)" },
+        { "id": "bertholdt_3", "name": "Bertholdt (Steam Emission)", "image": "images/Bertholdt (Steam Emission).png", "nextForm": "Bertholdt (Shiganshina Blast)" },
+        { "id": "bertholdt_4", "name": "Bertholdt (Shiganshina Blast)", "image": "images/Bertholdt (Shiganshina Blast).png", "nextForm": null },
+
+        { "id": "annie_1", "name": "Annie Leonhart (Cadet)", "image": "images/Annie Leonhart (Cadet).png", "nextForm": "Annie (Female Titan)" },
+        { "id": "annie_2", "name": "Annie (Female Titan)", "image": "images/Annie (Female Titan).png", "nextForm": "Annie (Crystallization)" },
+        { "id": "annie_3", "name": "Annie (Crystallization)", "image": "images/Annie (Crystallization).png", "nextForm": null },
+
+        { "id": "zeke_1", "name": "Zeke Yeager (Warrior)", "image": "images/Zeke Yeager (Warrior).png", "nextForm": "Zeke (Beast Titan)" },
+        { "id": "zeke_2", "name": "Zeke (Beast Titan)", "image": "images/Zeke (Beast Titan).png", "nextForm": null },
+
+        { "id": "porco_1", "name": "Porco Galliard (Warrior)", "image": "images/Porco Galliard (Warrior).png", "nextForm": "Porco (Jaw Titan)" },
+        { "id": "porco_2", "name": "Porco (Jaw Titan)", "image": "images/Porco (Jaw Titan).png", "nextForm": null },
+
+        { "id": "falco_1", "name": "Falco Grice (Warrior Candidate)", "image": "images/Falco Grice (Warrior Candidate).png", "nextForm": "Falco (Pure Titan)" },
+        { "id": "falco_2", "name": "Falco (Pure Titan)", "image": "images/Falco (Pure Titan).png", "nextForm": "Falco (Jaw Titan)" },
+        { "id": "falco_3", "name": "Falco (Jaw Titan)", "image": "images/Falco (Jaw Titan).png", "nextForm": "Falco (Flying Bird Jaw Titan)" },
+        { "id": "falco_4", "name": "Falco (Flying Bird Jaw Titan)", "image": "images/Falco (Flying Bird Jaw Titan).png", "nextForm": null },
+
+        { "id": "jean_1", "name": "Jean Kirstein (Cadet)", "image": "images/Jean Kirstein (Cadet).png", "nextForm": "Jean (Veteran Scout Leader)" },
+        { "id": "jean_2", "name": "Jean (Veteran Scout Leader)", "image": "images/Jean (Veteran Scout Leader).png", "nextForm": null },
+
+        { "id": "historia_1", "name": "Historia Reiss (Christa Lenz)", "image": "images/Historia Reiss (Christa Lenz).png", "nextForm": "Historia (Queen of Eldia)" },
+        { "id": "historia_2", "name": "Historia (Queen of Eldia)", "image": "images/Historia (Queen of Eldia).png", "nextForm": null },
+
+        { "id": "ymir_1", "name": "Ymir (Scout)", "image": "images/Ymir (Scout).png", "nextForm": "Ymir (Jaw Titan)" },
+        { "id": "ymir_2", "name": "Ymir (Jaw Titan)", "image": "images/Ymir (Jaw Titan).png", "nextForm": null },
+
+        { "id": "pieck", "name": "Pieck Finger (Base)", "image": "images/Pieck Finger (Base).png", "nextForm": null },
+        { "id": "kenny", "name": "Kenny Ackerman (Thug)", "image": "images/Kenny Ackerman (Thug).png", "nextForm": null },
+        { "id": "erwin", "name": "Erwin Smith", "image": "images/Erwin Smith.png", "nextForm": null },
+        { "id": "hange", "name": "Hange Zoë", "image": "images/Hange Zoë.png", "nextForm": null },
+        { "id": "sasha", "name": "Sasha Blouse", "image": "images/Sasha Blouse.png", "nextForm": null },
+        { "id": "connie", "name": "Connie Springer", "image": "images/Connie Springer.png", "nextForm": null },
+        { "id": "gabi", "name": "Gabi Braun", "image": "images/Gabi Braun.png", "nextForm": null },
+        { "id": "mikasa", "name": "Mikasa Ackerman", "image": "images/Mikasa Ackerman.png", "nextForm": null }
+      ],
+      "bosses": [
+        { "name": "Eren (Founding Titan Rumbling)", "image": "images/Eren (Founding Titan Rumbling).png" },
+        { "name": "Zeke (Beast Titan)", "image": "images/Zeke (Beast Titan).png" }
+      ]
+    },
+    {
+      "id": "demon_slayer",
+      "title": "Demon Slayer",
+      "enabled": true,
+      "characters": [
+        { "id": "tanjiro_1", "name": "Tanjiro Kamado (Water Breathing)", "image": "images/Tanjiro Kamado (Water Breathing).png", "nextForm": "Tanjiro (Hinokami Kagura)" },
+        { "id": "tanjiro_2", "name": "Tanjiro (Hinokami Kagura)", "image": "images/Tanjiro (Hinokami Kagura).png", "nextForm": "Tanjiro (Slayer Mark)" },
+        { "id": "tanjiro_3", "name": "Tanjiro (Slayer Mark)", "image": "images/Tanjiro (Slayer Mark).png", "nextForm": "Tanjiro (Demon King)" },
+        { "id": "tanjiro_4", "name": "Tanjiro (Demon King)", "image": "images/Tanjiro (Demon King).png", "nextForm": null },
+
+        { "id": "nezuko_1", "name": "Nezuko Kamado (Normal)", "image": "images/Nezuko Kamado (Normal).png", "nextForm": "Nezuko (Awakened Demon Form)" },
+        { "id": "nezuko_2", "name": "Nezuko (Awakened Demon Form)", "image": "images/Nezuko (Awakened Demon Form).png", "nextForm": null },
+
+        { "id": "zenitsu_1", "name": "Zenitsu Agatsuma (Normal)", "image": "images/Zenitsu Agatsuma (Normal).png", "nextForm": "Zenitsu (Sixfold)" },
+        { "id": "zenitsu_2", "name": "Zenitsu (Sixfold)", "image": "images/Zenitsu (Sixfold).png", "nextForm": "Zenitsu (God Speed)" },
+        { "id": "zenitsu_3", "name": "Zenitsu (God Speed)", "image": "images/Zenitsu (God Speed).png", "nextForm": "Zenitsu (7th Form)" },
+        { "id": "zenitsu_4", "name": "Zenitsu (7th Form)", "image": "images/Zenitsu (7th Form).png", "nextForm": null },
+
+        { "id": "inosuke", "name": "Inosuke Hashibira (Beast)", "image": "images/Inosuke Hashibira (Beast).png", "nextForm": null },
+
+        { "id": "giyu_1", "name": "Giyu Tomioka (Water Hashira)", "image": "images/Giyu Tomioka (Water Hashira).png", "nextForm": "Giyu (11th Form)" },
+        { "id": "giyu_2", "name": "Giyu (11th Form)", "image": "images/Giyu (11th Form).png", "nextForm": "Giyu (Slayer Mark)" },
+        { "id": "giyu_3", "name": "Giyu (Slayer Mark)", "image": "images/Giyu (Slayer Mark).png", "nextForm": null },
+
+        { "id": "muichiro_1", "name": "Muichiro Tokito (Mist Hashira)", "image": "images/Muichiro Tokito (Mist Hashira).png", "nextForm": "Muichiro (7th Form)" },
+        { "id": "muichiro_2", "name": "Muichiro (7th Form)", "image": "images/Muichiro (7th Form).png", "nextForm": "Muichiro (Slayer Mark)" },
+        { "id": "muichiro_3", "name": "Muichiro (Slayer Mark)", "image": "images/Muichiro (Slayer Mark).png", "nextForm": null },
+
+        { "id": "gyomei_1", "name": "Gyomei Himejima (Stone Hashira)", "image": "images/Gyomei Himejima (Stone Hashira).png", "nextForm": "Gyomei (Flail & Axe)" },
+        { "id": "gyomei_2", "name": "Gyomei (Flail & Axe)", "image": "images/Gyomei (Flail & Axe).png", "nextForm": "Gyomei (Slayer Mark)" },
+        { "id": "gyomei_3", "name": "Gyomei (Slayer Mark)", "image": "images/Gyomei (Slayer Mark).png", "nextForm": null },
+
+        { "id": "genya_1", "name": "Genya Shinazugawa (Gunner)", "image": "images/Genya Shinazugawa (Gunner).png", "nextForm": "Genya (Demon Consumption)" },
+        { "id": "genya_2", "name": "Genya (Demon Consumption)", "image": "images/Genya (Demon Consumption).png", "nextForm": null },
+
+        { "id": "rengoku_1", "name": "Kyojuro Rengoku (Base)", "image": "images/Kyojuro Rengoku (Base).png", "nextForm": "Rengoku (9th Form)" },
+        { "id": "rengoku_2", "name": "Rengoku (9th Form)", "image": "images/Rengoku (9th Form).png", "nextForm": null },
+
+        { "id": "mitsuri_1", "name": "Mitsuri Kanroji (Base)", "image": "images/Mitsuri Kanroji (Base).png", "nextForm": "Mitsuri (Demon Slayer Mark)" },
+        { "id": "mitsuri_2", "name": "Mitsuri (Demon Slayer Mark)", "image": "images/Mitsuri (Demon Slayer Mark).png", "nextForm": null },
+
+        { "id": "sanemi_1", "name": "Sanemi Shinazugawa (Base)", "image": "images/Sanemi Shinazugawa (Base).png", "nextForm": "Sanemi (Demon Slayer Mark)" },
+        { "id": "sanemi_2", "name": "Sanemi (Demon Slayer Mark)", "image": "images/Sanemi (Demon Slayer Mark).png", "nextForm": null },
+
+        { "id": "uzui", "name": "Tengen Uzui (Base)", "image": "images/Tengen Uzui (Base).png", "nextForm": null },
+        { "id": "shinobu", "name": "Shinobu Kocho", "image": "images/Shinobu Kocho.png", "nextForm": null },
+        { "id": "obanai", "name": "Obanai Iguro", "image": "images/Obanai Iguro.png", "nextForm": null },
+        { "id": "kanao", "name": "Kanao Tsuyuri", "image": "images/Kanao Tsuyuri.png", "nextForm": null },
+        { "id": "rui", "name": "Rui", "image": "images/Rui.png", "nextForm": null }
+      ],
+      "bosses": [
+        { "name": "Akaza (Upper Moon 3)", "image": "images/Akaza (Upper Moon 3).png" },
+        { "name": "Doma", "image": "images/Doma.png" },
+        { "name": "Kokushibo (Upper Moon 1)", "image": "images/Kokushibo (Upper Moon 1).png" },
+        { "name": "Muzan Kibutsuji (Base)", "image": "images/Muzan Kibutsuji (Base).png" },
+        { "name": "Muzan (Combat Whip Form)", "image": "images/Muzan (Combat Whip Form).png" }
+      ]
+    },
+    {
+      "id": "mha",
+      "title": "My Hero Academia",
+      "enabled": true,
+      "characters": [
+        { "id": "deku_1", "name": "Izuku Midoriya (Quirkless)", "image": "images/Izuku Midoriya (Quirkless).png", "nextForm": "Deku (OFA 5%)" },
+        { "id": "deku_2", "name": "Deku (OFA 5%)", "image": "images/Deku (OFA 5%).png", "nextForm": "Deku (Full Cowl 20%)" },
+        { "id": "deku_3", "name": "Deku (Full Cowl 20%)", "image": "images/Deku (Full Cowl 20%).png", "nextForm": "Deku (100% Infinite)" },
+        { "id": "deku_4", "name": "Deku (100% Infinite)", "image": "images/Deku (100% Infinite).png", "nextForm": "Deku (vigilante)" },
+        { "id": "deku_5", "name": "Deku (vigilante)", "image": "images/Deku (vigilante).png", "nextForm": null },
+
+        { "id": "bakugo_1", "name": "Katsuki Bakugo (Base)", "image": "images/Katsuki Bakugo (Base).png", "nextForm": "Bakugo (AP Shot)" },
+        { "id": "bakugo_2", "name": "Bakugo (AP Shot)", "image": "images/Bakugo (AP Shot).png", "nextForm": "Bakugo (Howitzer Impact)" },
+        { "id": "bakugo_3", "name": "Bakugo (Howitzer Impact)", "image": "images/Bakugo (Howitzer Impact).png", "nextForm": "Bakugo (Cluster Full Body)" },
+        { "id": "bakugo_4", "name": "Bakugo (Cluster Full Body)", "image": "images/Bakugo (Cluster Full Body).png", "nextForm": null },
+
+        { "id": "uraraka", "name": "Ochaco Uraraka (Base)", "image": "images/Ochaco Uraraka (Base).png", "nextForm": null },
+
+        { "id": "shoto_1", "name": "Shoto Todoroki (Base)", "image": "images/Shoto Todoroki (Base).png", "nextForm": "Shoto (Flashfreeze Heatwave)" },
+        { "id": "shoto_2", "name": "Shoto (Flashfreeze Heatwave)", "image": "images/Shoto (Flashfreeze Heatwave).png", "nextForm": "Shoto (Phosphor)" },
+        { "id": "shoto_3", "name": "Shoto (Phosphor)", "image": "images/Shoto (Phosphor).png", "nextForm": "Shoto (Great Glacial Aegir)" },
+        { "id": "shoto_4", "name": "Shoto (Great Glacial Aegir)", "image": "images/Shoto (Great Glacial Aegir).png", "nextForm": null },
+
+        { "id": "allmight_1", "name": "All Might (Weakened)", "image": "images/All Might (Weakened).png", "nextForm": "All Might (Muscle Form)" },
+        { "id": "allmight_2", "name": "All Might (Muscle Form)", "image": "images/All Might (Muscle Form).png", "nextForm": "All Might (Prime Form)" },
+        { "id": "allmight_3", "name": "All Might (Prime Form)", "image": "images/All Might (Prime Form).png", "nextForm": null },
+
+        { "id": "kirishima_1", "name": "Eijiro Kirishima (Base)", "image": "images/Eijiro Kirishima (Base).png", "nextForm": "Kirishima (Hardening)" },
+        { "id": "kirishima_2", "name": "Kirishima (Hardening)", "image": "images/Kirishima (Hardening).png", "nextForm": "Kirishima (Red Riot Unbreakable)" },
+        { "id": "kirishima_3", "name": "Kirishima (Red Riot Unbreakable)", "image": "images/Kirishima (Red Riot Unbreakable).png", "nextForm": null },
+
+        { "id": "iida_1", "name": "Tenya Iida (Base)", "image": "images/Tenya Iida (Base).png", "nextForm": "Iida (Recipro Burst)" },
+        { "id": "iida_2", "name": "Iida (Recipro Burst)", "image": "images/Iida (Recipro Burst).png", "nextForm": null },
+
+        { "id": "tokoyami_1", "name": "Fumikage Tokoyami (Base)", "image": "images/Fumikage Tokoyami (Base).png", "nextForm": "Tokoyami (Black Abyss)" },
+        { "id": "tokoyami_2", "name": "Tokoyami (Black Abyss)", "image": "images/Tokoyami (Black Abyss).png", "nextForm": null },
+
+        { "id": "kaminari_1", "name": "Denki Kaminari (Base)", "image": "images/Denki Kaminari (Base).png", "nextForm": "Kaminari (1,300,000 Volts Indiscriminate)" },
+        { "id": "kaminari_2", "name": "Kaminari (1,300,000 Volts Indiscriminate)", "image": "images/Kaminari (1,300,000 Volts Indiscriminate).png", "nextForm": null },
+
+        { "id": "endeavor_1", "name": "Endeavor (Base)", "image": "images/Endeavor (Base).png", "nextForm": "Endeavor (Prominence Burn)" },
+        { "id": "endeavor_2", "name": "Endeavor (Prominence Burn)", "image": "images/Endeavor (Prominence Burn).png", "nextForm": null },
+
+        { "id": "mirio_1", "name": "Mirio Togata (Base)", "image": "images/Mirio Togata (Base).png", "nextForm": "Mirio (Lemillion Peak)" },
+        { "id": "mirio_2", "name": "Mirio (Lemillion Peak)", "image": "images/Mirio (Lemillion Peak).png", "nextForm": null },
+
+        { "id": "toga", "name": "Himiko Toga (Base)", "image": "images/Himiko Toga (Base).png", "nextForm": null },
+        { "id": "aizawa", "name": "Shota Aizawa (Eraser Head)", "image": "images/Shota Aizawa (Eraser Head).png", "nextForm": null },
+        { "id": "asui", "name": "Tsuyu Asui", "image": "images/Tsuyu Asui.png", "nextForm": null },
+        { "id": "momo", "name": "Momo Yaoyorozu", "image": "images/Momo Yaoyorozu.png", "nextForm": null },
+        { "id": "hawks", "name": "Hawks (Keigo Takami)", "image": "images/Hawks (Keigo Takami).png", "nextForm": null },
+        { "id": "nejire", "name": "Nejire Hado", "image": "images/Nejire Hado.png", "nextForm": null }
+      ],
+      "bosses": [
+        { "name": "Dabi (Blueflame)", "image": "images/Dabi (Blueflame).png" },
+        { "name": "Tomura Shigaraki (Base Decay)", "image": "images/Tomura Shigaraki (Base Decay).png" },
+        { "name": "Shigaraki (All For One Fusion)", "image": "images/Shigaraki (All For One Fusion).png" },
+        { "name": "All For One (Masked)", "image": "images/All For One (Masked).png" },
+        { "name": "All For One (Rewind Prime Form)", "image": "images/All For One (Rewind Prime Form).png" }
       ]
     }
   ]
