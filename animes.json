@@ -227,7 +227,7 @@
         { "id": "tanjiro_3", "name": "Tanjiro (Slayer Mark)", "image": "images/Tanjiro (Slayer Mark).png", "nextForm": "Tanjiro (Demon King)" },
         { "id": "tanjiro_4", "name": "Tanjiro (Demon King)", "image": "images/Tanjiro (Demon King).png", "nextForm": null },
 
-        { "id": "nezuko_1", "name": "Nezuko Kamado (Normal)", "image": "images/Nezuko Kamado (Normal).png", "nextForm": "Nezuko (Awakened Demon Form)" },
+        { "id": "nezuko_1", "name": "Nezuko Kamado (Normal)", "image": "images/Nezuko Kamado.png", "nextForm": "Nezuko (Awakened Demon Form)" },
         { "id": "nezuko_2", "name": "Nezuko (Awakened Demon Form)", "image": "images/Nezuko (Awakened Demon Form).png", "nextForm": null },
 
         { "id": "zenitsu_1", "name": "Zenitsu Agatsuma (Normal)", "image": "images/Zenitsu Agatsuma (Normal).png", "nextForm": "Zenitsu (Sixfold)" },
@@ -280,11 +280,10 @@
       "title": "My Hero Academia",
       "enabled": true,
       "characters": [
-        { "id": "deku_1", "name": "Izuku Midoriya (Quirkless)", "image": "images/Izuku Midoriya (Quirkless).png", "nextForm": "Deku (OFA 5%)" },
-        { "id": "deku_2", "name": "Deku (OFA 5%)", "image": "images/Deku (OFA 5%).png", "nextForm": "Deku (Full Cowl 20%)" },
-        { "id": "deku_3", "name": "Deku (Full Cowl 20%)", "image": "images/Deku (Full Cowl 20%).png", "nextForm": "Deku (100% Infinite)" },
-        { "id": "deku_4", "name": "Deku (100% Infinite)", "image": "images/Deku (100% Infinite).png", "nextForm": "Deku (vigilante)" },
-        { "id": "deku_5", "name": "Deku (vigilante)", "image": "images/Deku (vigilante).png", "nextForm": null },
+        { "id": "deku_1", "name": "Deku (OFA 5%)", "image": "images/Deku (OFA 5).png", "nextForm": "Deku (Full Cowl 20%)" },
+        { "id": "deku_2", "name": "Deku (Full Cowl 20%)", "image": "images/Deku (Full Cowl 20).png", "nextForm": "Deku (100% Infinite)" },
+        { "id": "deku_3", "name": "Deku (100% Infinite)", "image": "images/Deku (100 Infinite).png", "nextForm": "Deku (vigilante)" },
+        { "id": "deku_4", "name": "Deku (vigilante)", "image": "images/Deku (vigilante).png", "nextForm": null },
 
         { "id": "bakugo_1", "name": "Katsuki Bakugo (Base)", "image": "images/Katsuki Bakugo (Base).png", "nextForm": "Bakugo (AP Shot)" },
         { "id": "bakugo_2", "name": "Bakugo (AP Shot)", "image": "images/Bakugo (AP Shot).png", "nextForm": "Bakugo (Howitzer Impact)" },

@@ -11,68 +11,65 @@
   <div class="app-header">
     <h1>Anime Roulette Engine</h1>
     <p>Stage <span id="stageCounter">1</span> | Spin the wheel to explore and fight bosses!</p>
+    <!-- Toggle Button for Game Log Sidebar -->
+    <button id="toggleLogBtn" class="secondary-btn" style="margin-top: 10px;">📜 View Game Log</button>
   </div>
 
   <div class="main-container">
     <div class="card wheel-card">
-      <div class="wheel-box">
-        <div class="pointer"></div>
-        <canvas id="wheelCanvas" width="340" height="340"></canvas>
+      
+      <div id="selectionModeContainer" class="selection-box">
+        <button id="toggleModeBtn" class="secondary-btn">🔀 Switch to: Choose an Anime</button>
+
+        <div id="spinModeView" class="mode-view">
+          <h2 id="wheelTitle">Select Anime Universe</h2>
+          <div class="wheel-box">
+            <div class="pointer"></div>
+            <canvas id="wheelCanvas" width="340" height="340"></canvas>
+          </div>
+          <button id="spinBtn" class="primary-btn">SPIN WHEEL</button>
+          <button id="restartBtn" class="secondary-btn hidden" style="margin-top: 10px;">Play Again</button>
+        </div>
+
+        <div id="chooseModeView" class="mode-view hidden">
+          <div class="dropdown-container">
+            <h3>Select Anime Universe</h3>
+            <select id="animeSelectDropdown">
+              <option value="" disabled selected>-- Choose an Anime --</option>
+            </select>
+            <button id="confirmSelectBtn" class="primary-btn" style="margin-top: 15px;">Confirm World</button>
+          </div>
+        </div>
+
       </div>
-      <button id="spinBtn" class="primary-btn">SPIN WHEEL</button>
+
     </div>
 
-    <div class="card side-card">
-      <h2>Your Roster (<span id="partyCount">0</span>/6)</h2>
-      <div id="partyList" class="roster-grid">
-        <p class="empty-msg">No characters recruited yet.</p>
+    <div class="card info-card">
+      <div class="info-section">
+        <h3>Current Party (<span id="partyCount">0</span>/6)</h3>
+        <div id="partyList" class="party-grid">
+          <p class="empty-msg">No characters recruited yet.</p>
+        </div>
       </div>
 
-      <h2 style="margin-top: 24px;">Inventory</h2>
-      <div id="inventoryList" class="inventory-grid">
-        <p class="empty-msg">Inventory empty.</p>
+      <div class="info-section">
+        <h3>Inventory</h3>
+        <div id="inventoryList" class="inventory-grid">
+          <p class="empty-msg">Inventory empty.</p>
+        </div>
       </div>
-    </div>
-  </div>
-
-  <div class="card log-card" id="gameLog">
-    <div class="log-entry">System ready. Click "SPIN WHEEL" to start your journey!</div>
-  </div>
-
-  <div id="encounterModal" class="modal hidden">
-    <div class="modal-content card">
-      <h2>Random Encounter!</h2>
-      <p>Spin to see who joins your team!</p>
-      <div class="wheel-box">
-        <div class="pointer"></div>
-        <canvas id="encounterCanvas" width="280" height="280"></canvas>
-      </div>
-      <button id="encounterSpinBtn" class="primary-btn">RECRUIT CHARACTER</button>
-    </div>
-  </div>
-
-  <div id="trainModal" class="modal hidden">
-    <div class="modal-content card">
-      <h2>Training Arc!</h2>
-      <p>Spin to select a character to evolve!</p>
-      <div class="wheel-box">
-        <div class="pointer"></div>
-        <canvas id="trainCanvas" width="280" height="280"></canvas>
-      </div>
-      <button id="trainSpinBtn" class="primary-btn">EVOLVE CHARACTER</button>
     </div>
   </div>
 
-  <div id="bossModal" class="modal hidden">
-    <div class="modal-content card">
-      <h2 id="bossModalTitle">Boss Battle!</h2>
-      <p id="bossModalDesc">Spin the Battle Wheel!</p>
-      <div class="wheel-box">
-        <div class="pointer"></div>
-        <canvas id="bossCanvas" width="280" height="280"></canvas>
-      </div>
-      <button id="bossSpinBtn" class="primary-btn">FIGHT BOSS</button>
-      <div id="battleStatusMsg" class="status-msg"></div>
+  <!-- Toggleable Game Log Sidebar -->
+  <div id="logSidebar" class="log-sidebar hidden">
+    <div class="sidebar-header">
+      <h3>Game Log</h3>
+      <button id="closeLogBtn" class="close-btn">&times;</button>
+    </div>
+    <div id="gameLog" class="log-card-sidebar">
+      <!-- Log entries will appear here -->
     </div>
   </div>
 

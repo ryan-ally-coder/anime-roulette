@@ -1,24 +1,24 @@
 // Global Game State
 const gameState = {
-  phase: "ANIME_SELECT",
+  phase: "ANIME_SELECT", // ANIME_SELECT, STARTER_SELECT, MAIN_GAME, ENCOUNTER_SELECT, TRAINING_SELECT, BOSS_BATTLE, EVOLUTION_WHEEL
+  isChooseMode: false,
   selectedAnime: null,
   party: [],
   inventory: { senzuBean: 0 },
   stage: 1,
+  evoChance: 0.25, // Evolution pity chance starting at 25%
   isSpinning: false,
   currentRotation: 0,
-  bossRotation: 0,
-  trainRotation: 0,
-  encounterRotation: 0,
+  availableAnimes: [],
   activeCharacters: [],
   activeBosses: [],
   currentBoss: null,
-  bossSlices: [],
+  encounterSlices: [],
   trainSlices: [],
-  encounterSlices: []
+  bossSlices: []
 };
 
-// Main Slices
+// Main Event Wheel Slices
 const mainSlices = [
   { label: "Random Encounter", weight: 50, color: "#2ed573" },
   { label: "Training Arc", weight: 40, color: "#ffa502" },
@@ -31,22 +31,14 @@ let currentWheelSlices = [];
 const canvas = document.getElementById("wheelCanvas");
 const ctx = canvas ? canvas.getContext("2d") : null;
 const spinBtn = document.getElementById("spinBtn");
+const wheelTitle = document.getElementById("wheelTitle");
 
-const bossCanvas = document.getElementById("bossCanvas");
-const bossCtx = bossCanvas ? bossCanvas.getContext("2d") : null;
-const bossModal = document.getElementById("bossModal");
-const bossSpinBtn = document.getElementById("bossSpinBtn");
-const battleStatusMsg = document.getElementById("battleStatusMsg");
-
-const trainCanvas = document.getElementById("trainCanvas");
-const trainCtx = trainCanvas ? trainCanvas.getContext("2d") : null;
-const trainModal = document.getElementById("trainModal");
-const trainSpinBtn = document.getElementById("trainSpinBtn");
-
-const encounterCanvas = document.getElementById("encounterCanvas");
-const encounterCtx = encounterCanvas ? encounterCanvas.getContext("2d") : null;
-const encounterModal = document.getElementById("encounterModal");
-const encounterSpinBtn = document.getElementById("encounterSpinBtn");
+const toggleModeBtn = document.getElementById("toggleModeBtn");
+const spinModeView = document.getElementById("spinModeView");
+const chooseModeView = document.getElementById("chooseModeView");
+const animeSelectDropdown = document.getElementById("animeSelectDropdown");
+const confirmSelectBtn = document.getElementById("confirmSelectBtn");
+const restartBtn = document.getElementById("restartBtn");
 
 // Game Engine Logic
 const GameEngine = {
@@ -56,24 +48,33 @@ const GameEngine = {
       if (!response.ok) throw new Error("Failed to load JSON file");
       const animeData = await response.json();
 
-      const availableAnimes = animeData.animes.filter(a => a.enabled);
-      const sliceColors = ["#9b59b6", "#e67e22", "#1abc9c", "#e74c3c", "#3498db"];
+      gameState.availableAnimes = animeData.animes.filter(a => a.enabled);
+      
+      this.populateDropdown();
+      this.resetToAnimeSelect();
 
-      currentWheelSlices = availableAnimes.map((anime, index) => ({
-        label: anime.title,
-        data: anime,
-        weight: 1,
-        color: sliceColors[index % sliceColors.length]
-      }));
+      // Event Listeners
+      if (spinBtn) spinBtn.onclick = this.handleMainSpinClick.bind(this);
+      if (toggleModeBtn) toggleModeBtn.onclick = this.toggleSelectionMode.bind(this);
+      if (confirmSelectBtn) confirmSelectBtn.onclick = this.confirmManualChoice.bind(this);
+      if (restartBtn) restartBtn.onclick = this.resetToAnimeSelect.bind(this);
 
-      if (canvas && ctx) this.drawWheel(canvas, ctx, currentWheelSlices);
-      this.updateUI();
-      this.logEvent("[STARTUP] Spin the wheel to choose your starting Anime!");
+      // Game Log Sidebar Toggle Listeners
+      const toggleLogBtn = document.getElementById("toggleLogBtn");
+      const closeLogBtn = document.getElementById("closeLogBtn");
+      const logSidebar = document.getElementById("logSidebar");
 
-      if (spinBtn) spinBtn.onclick = this.spinMainWheel.bind(this);
-      if (bossSpinBtn) bossSpinBtn.onclick = this.spinBossWheel.bind(this);
-      if (trainSpinBtn) trainSpinBtn.onclick = this.spinTrainingWheel.bind(this);
-      if (encounterSpinBtn) encounterSpinBtn.onclick = this.spinEncounterWheel.bind(this);
+      if (toggleLogBtn && logSidebar) {
+        toggleLogBtn.onclick = () => {
+          logSidebar.classList.toggle("hidden");
+        };
+      }
+
+      if (closeLogBtn && logSidebar) {
+        closeLogBtn.onclick = () => {
+          logSidebar.classList.add("hidden");
+        };
+      }
 
     } catch (error) {
       console.error("Error loading anime data:", error);
@@ -81,7 +82,145 @@ const GameEngine = {
     }
   },
 
-  drawWheel: function(c, context, slices) {
+  populateDropdown: function() {
+    if (!animeSelectDropdown) return;
+    animeSelectDropdown.innerHTML = `<option value="" disabled selected>-- Choose an Anime --</option>`;
+    gameState.availableAnimes.forEach(anime => {
+      const option = document.createElement("option");
+      option.value = anime.id;
+      option.textContent = anime.title;
+      animeSelectDropdown.appendChild(option);
+    });
+  },
+
+  resetToAnimeSelect: function() {
+    gameState.phase = "ANIME_SELECT";
+    gameState.stage = 1;
+    gameState.evoChance = 0.25; // Reset evolution chance
+    gameState.party = [];
+    gameState.inventory = { senzuBean: 0 };
+    gameState.selectedAnime = null;
+    gameState.isSpinning = false;
+
+    const sliceColors = ["#9b59b6", "#e67e22", "#1abc9c", "#e74c3c", "#3498db"];
+    currentWheelSlices = gameState.availableAnimes.map((anime, index) => ({
+      label: anime.title,
+      data: anime,
+      weight: 1,
+      color: sliceColors[index % sliceColors.length]
+    }));
+
+    if (wheelTitle) wheelTitle.textContent = "Select Anime Universe";
+    if (spinBtn) {
+      spinBtn.textContent = "SPIN FOR UNIVERSE";
+      spinBtn.disabled = false;
+      spinBtn.classList.remove("hidden");
+    }
+    if (restartBtn) restartBtn.classList.add("hidden");
+    if (toggleModeBtn) toggleModeBtn.classList.remove("hidden");
+
+    if (gameState.isChooseMode) {
+      spinModeView.classList.add("hidden");
+      chooseModeView.classList.remove("hidden");
+    } else {
+      chooseModeView.classList.add("hidden");
+      spinModeView.classList.remove("hidden");
+    }
+
+    this.resetCanvasRotation();
+    this.drawCurrentWheel();
+    this.updateUI();
+    this.logEvent("[RESTART] Game reset. Select or spin for a new Anime Universe!");
+  },
+
+  toggleSelectionMode: function() {
+    if (gameState.phase !== "ANIME_SELECT") return;
+
+    gameState.isChooseMode = !gameState.isChooseMode;
+
+    if (gameState.isChooseMode) {
+      spinModeView.classList.add("hidden");
+      chooseModeView.classList.remove("hidden");
+      toggleModeBtn.textContent = "🔀 Switch to: Spin Wheel";
+    } else {
+      chooseModeView.classList.add("hidden");
+      spinModeView.classList.remove("hidden");
+      toggleModeBtn.textContent = "🔀 Switch to: Choose an Anime";
+    }
+  },
+
+  confirmManualChoice: function() {
+    const selectedId = animeSelectDropdown.value;
+    if (!selectedId) {
+      alert("Please select an anime universe first!");
+      return;
+    }
+
+    const chosenAnime = gameState.availableAnimes.find(a => a.id === selectedId);
+    if (chosenAnime) {
+      chooseModeView.classList.add("hidden");
+      spinModeView.classList.remove("hidden");
+      if (toggleModeBtn) toggleModeBtn.classList.add("hidden");
+
+      this.selectAnimeWorld(chosenAnime);
+    }
+  },
+
+  selectAnimeWorld: function(animeObject) {
+    gameState.selectedAnime = animeObject;
+    gameState.activeCharacters = [...animeObject.characters];
+    gameState.activeBosses = [...animeObject.bosses];
+
+    this.logEvent(`[WORLD SELECTED] Locked in: ${gameState.selectedAnime.title}!`);
+
+    const nextFormNames = new Set(
+      gameState.activeCharacters
+        .map(c => c.nextForm)
+        .filter(nf => nf !== null && nf !== undefined)
+    );
+
+    const baseEvolvableCharacters = gameState.activeCharacters.filter(
+      c => !nextFormNames.has(c.name) && c.nextForm !== null && c.nextForm !== undefined
+    );
+
+    const starterPool = baseEvolvableCharacters.length > 0 
+      ? baseEvolvableCharacters 
+      : gameState.activeCharacters.filter(c => !nextFormNames.has(c.name));
+
+    gameState.phase = "STARTER_SELECT";
+    const colors = ["#2ecc71", "#3498db", "#9b59b6", "#f1c40f", "#e67e22", "#e74c3c"];
+    
+    currentWheelSlices = starterPool.map((char, index) => ({
+      label: char.name,
+      data: char,
+      weight: 1,
+      color: colors[index % colors.length]
+    }));
+
+    if (wheelTitle) wheelTitle.textContent = "Spin for Starter Character";
+    if (spinBtn) {
+      spinBtn.textContent = "SPIN FOR STARTER";
+      spinBtn.disabled = false;
+    }
+
+    this.resetCanvasRotation();
+    this.drawCurrentWheel();
+  },
+
+  resetCanvasRotation: function() {
+    if (!canvas) return;
+    canvas.style.transition = "none";
+    gameState.currentRotation = 0;
+    canvas.style.transform = `rotate(0deg)`;
+    void canvas.offsetHeight;
+  },
+
+  drawCurrentWheel: function() {
+    if (!canvas || !ctx) return;
+    this.drawStandardWheel(canvas, ctx, currentWheelSlices);
+  },
+
+  drawStandardWheel: function(c, context, slices) {
     if (!c || !context) return;
     const centerX = c.width / 2;
     const centerY = c.height / 2;
@@ -92,6 +231,11 @@ const GameEngine = {
 
     context.clearRect(0, 0, c.width, c.height);
 
+    const numSlices = slices.length;
+    let fontSize = 12;
+    if (numSlices > 15) fontSize = 8;
+    else if (numSlices > 10) fontSize = 9;
+
     slices.forEach((slice) => {
       const sliceAngle = (slice.weight / totalWeight) * (2 * Math.PI);
 
@@ -101,30 +245,41 @@ const GameEngine = {
       context.closePath();
       context.fillStyle = slice.color;
       context.fill();
-      context.strokeStyle = "#121212";
+      context.strokeStyle = "#121214";
       context.lineWidth = 2;
       context.stroke();
 
+      const midAngle = currentAngle + sliceAngle / 2;
+
       context.save();
       context.translate(centerX, centerY);
-      context.rotate(currentAngle + sliceAngle / 2);
+      context.rotate(midAngle);
       context.textAlign = "right";
+      context.textBaseline = "middle";
       context.fillStyle = "#ffffff";
-      context.font = "bold 11px sans-serif";
-      context.fillText(slice.label, radius - 10, 4);
+      context.font = `bold ${fontSize}px sans-serif`;
+      context.shadowColor = "rgba(0, 0, 0, 0.7)";
+      context.shadowBlur = 3;
+
+      let text = slice.label;
+      const maxLength = numSlices > 10 ? 14 : 22;
+      if (text.length > maxLength) {
+        text = text.substring(0, maxLength - 3) + "...";
+      }
+
+      context.fillText(text, radius - 10, 0);
       context.restore();
 
       currentAngle += sliceAngle;
     });
   },
 
-  spinMainWheel: function() {
+  handleMainSpinClick: function() {
     if (gameState.isSpinning) return;
     gameState.isSpinning = true;
     if (spinBtn) spinBtn.disabled = true;
 
     const totalWeight = currentWheelSlices.reduce((sum, s) => sum + s.weight, 0);
-
     let randomVal = Math.random() * totalWeight;
     let selectedIndex = 0;
 
@@ -162,26 +317,73 @@ const GameEngine = {
   },
 
   handleSpinResult: function(selectedSlice) {
-    if (gameState.phase === "ANIME_SELECT") {
-      gameState.selectedAnime = selectedSlice.data;
-      gameState.activeCharacters = [...selectedSlice.data.characters];
-      gameState.activeBosses = [...selectedSlice.data.bosses];
+    switch (gameState.phase) {
+      case "ANIME_SELECT":
+        if (toggleModeBtn) toggleModeBtn.classList.add("hidden");
+        this.selectAnimeWorld(selectedSlice.data);
+        break;
 
-      this.logEvent(`[WORLD SELECTED] Locked in: ${gameState.selectedAnime.title}!`);
+      case "STARTER_SELECT":
+        const starterChar = selectedSlice.data;
+        gameState.party.push({ ...starterChar });
+        this.logEvent(`[STARTER] You recruited ${starterChar.name} as your starter character!`);
+        this.updateUI();
+        this.transitionToMainGame();
+        break;
 
-      gameState.phase = "MAIN_GAME";
-      currentWheelSlices = mainSlices;
+      case "MAIN_GAME":
+        this.handleEventOutcome(selectedSlice.label);
+        break;
 
-      canvas.style.transition = "none";
-      gameState.currentRotation = 0;
-      canvas.style.transform = `rotate(0deg)`;
-      void canvas.offsetHeight;
+      case "ENCOUNTER_SELECT":
+        const char = selectedSlice.data;
+        if (gameState.party.length < 6) {
+          gameState.party.push({ ...char });
+          this.logEvent(`[ENCOUNTER] You met and recruited ${char.name}!`);
+        } else {
+          this.logEvent(`[ENCOUNTER] Met ${char.name}, but your roster is full!`);
+        }
+        this.updateUI();
+        this.triggerBossBattle();
+        break;
 
-      this.drawWheel(canvas, ctx, currentWheelSlices);
-      if (spinBtn) spinBtn.disabled = false;
-    } else {
-      this.handleEventOutcome(selectedSlice.label);
+      case "TRAINING_SELECT":
+        const oldChar = selectedSlice.data;
+        const partyIndex = selectedSlice.partyIndex;
+        const nextFormObj = gameState.activeCharacters.find(c => c.name === oldChar.nextForm);
+
+        if (nextFormObj) {
+          gameState.party[partyIndex] = { ...nextFormObj };
+          this.logEvent(`[EVOLUTION] ${oldChar.name} EVOLVED into ${nextFormObj.name}!`);
+        } else {
+          this.logEvent(`[TRAINING] ${oldChar.name} trained hard!`);
+        }
+        this.updateUI();
+        this.triggerBossBattle();
+        break;
+
+      case "BOSS_BATTLE":
+        this.resolveBossBattle(selectedSlice);
+        break;
+
+      case "EVOLUTION_WHEEL":
+        this.resolveEvolutionWheel(selectedSlice);
+        break;
     }
+  },
+
+  transitionToMainGame: function() {
+    gameState.phase = "MAIN_GAME";
+    currentWheelSlices = mainSlices;
+
+    if (wheelTitle) wheelTitle.textContent = "Spin Main Event Wheel";
+    if (spinBtn) {
+      spinBtn.textContent = "SPIN EVENT WHEEL";
+      spinBtn.disabled = false;
+    }
+
+    this.resetCanvasRotation();
+    this.drawCurrentWheel();
   },
 
   handleEventOutcome: function(sliceLabel) {
@@ -204,295 +406,270 @@ const GameEngine = {
   setupEncounterWheel: function() {
     const characters = gameState.activeCharacters;
     if (!characters || characters.length === 0) {
-      this.logEvent(`[ERROR] No characters available for encounter! Skipping to boss.`);
+      this.logEvent(`[ERROR] No characters available! Skipping to boss.`);
       this.triggerBossBattle();
       return;
     }
 
+    gameState.phase = "ENCOUNTER_SELECT";
     const colors = ["#2ecc71", "#27ae60", "#1abc9c", "#16a085", "#3498db", "#2980b9"];
-    gameState.encounterSlices = characters.map((char, index) => ({
+    
+    currentWheelSlices = characters.map((char, index) => ({
       label: char.name,
-      char: char,
+      data: char,
       weight: 1,
       color: colors[index % colors.length]
     }));
 
-    if (encounterSpinBtn) encounterSpinBtn.disabled = false;
-    if (encounterModal) encounterModal.classList.remove("hidden");
-
-    if (encounterCanvas && encounterCtx) {
-      encounterCanvas.style.transition = "none";
-      gameState.encounterRotation = 0;
-      encounterCanvas.style.transform = `rotate(0deg)`;
-      void encounterCanvas.offsetHeight;
-      this.drawWheel(encounterCanvas, encounterCtx, gameState.encounterSlices);
-    }
-  },
-
-  spinEncounterWheel: function() {
-    if (encounterSpinBtn) encounterSpinBtn.disabled = true;
-
-    const slices = gameState.encounterSlices;
-    const selectedIndex = Math.floor(Math.random() * slices.length);
-
-    const sliceDeg = 360 / slices.length;
-    const sliceCenterDeg = (selectedIndex * sliceDeg) + (sliceDeg / 2);
-
-    const extraSpins = 360 * 5;
-    const targetDegree = extraSpins + (360 - sliceCenterDeg) - 90;
-
-    const currentMod = gameState.encounterRotation % 360;
-    gameState.encounterRotation += (targetDegree - currentMod);
-
-    if (encounterCanvas) {
-      encounterCanvas.style.transition = "transform 4s cubic-bezier(0.15, 0.9, 0.25, 1)";
-      encounterCanvas.style.transform = `rotate(${gameState.encounterRotation}deg)`;
+    if (wheelTitle) wheelTitle.textContent = "Random Encounter: Spin to Recruit";
+    if (spinBtn) {
+      spinBtn.textContent = "RECRUIT CHARACTER";
+      spinBtn.disabled = false;
     }
 
-    setTimeout(() => {
-      const selected = slices[selectedIndex];
-      const char = selected.char;
-
-      if (gameState.party.length < 6) {
-        gameState.party.push({ ...char });
-        this.logEvent(`[ENCOUNTER] You met and recruited ${char.name}!`);
-      } else {
-        this.logEvent(`[ENCOUNTER] Met ${char.name}, but your roster is full!`);
-      }
-      this.updateUI();
-
-      if (encounterModal) encounterModal.classList.add("hidden");
-      this.triggerBossBattle();
-    }, 4000);
+    this.resetCanvasRotation();
+    this.drawCurrentWheel();
   },
 
   setupTrainingArcWheel: function() {
-    const eligibleMembers = gameState.party.map((char, index) => ({ char, partyIndex: index }))
-                                             .filter(item => item.char.nextForm !== null && item.char.nextForm !== undefined);
+    const eligibleMembers = gameState.party
+      .map((char, index) => ({ char, partyIndex: index }))
+      .filter(item => item.char.nextForm !== null && item.char.nextForm !== undefined);
 
     if (eligibleMembers.length === 0) {
       gameState.inventory.senzuBean++;
-      this.logEvent(`[TRAINING ARC] No evolvable characters in roster! Rewarded 1 Senzu Bean instead.`);
+      this.logEvent(`[TRAINING ARC] No evolvable characters! Rewarded 1 Senzu Bean instead.`);
       this.updateUI();
       this.triggerBossBattle();
       return;
     }
 
+    gameState.phase = "TRAINING_SELECT";
     const colors = ["#ffa502", "#e67e22", "#f39c12", "#d35400", "#16a085", "#2980b9"];
-    gameState.trainSlices = eligibleMembers.map((item, i) => ({
+
+    currentWheelSlices = eligibleMembers.map((item, i) => ({
       label: item.char.name,
+      data: item.char,
       partyIndex: item.partyIndex,
-      char: item.char,
       weight: 1,
       color: colors[i % colors.length]
     }));
 
-    if (trainSpinBtn) trainSpinBtn.disabled = false;
-    if (trainModal) trainModal.classList.remove("hidden");
-
-    if (trainCanvas && trainCtx) {
-      trainCanvas.style.transition = "none";
-      gameState.trainRotation = 0;
-      trainCanvas.style.transform = `rotate(0deg)`;
-      void trainCanvas.offsetHeight;
-      this.drawWheel(trainCanvas, trainCtx, gameState.trainSlices);
-    }
-  },
-
-  spinTrainingWheel: function() {
-    if (trainSpinBtn) trainSpinBtn.disabled = true;
-
-    const slices = gameState.trainSlices;
-    const selectedIndex = Math.floor(Math.random() * slices.length);
-
-    const sliceDeg = 360 / slices.length;
-    const sliceCenterDeg = (selectedIndex * sliceDeg) + (sliceDeg / 2);
-
-    const extraSpins = 360 * 5;
-    const targetDegree = extraSpins + (360 - sliceCenterDeg) - 90;
-
-    const currentMod = gameState.trainRotation % 360;
-    gameState.trainRotation += (targetDegree - currentMod);
-
-    if (trainCanvas) {
-      trainCanvas.style.transition = "transform 4s cubic-bezier(0.15, 0.9, 0.25, 1)";
-      trainCanvas.style.transform = `rotate(${gameState.trainRotation}deg)`;
+    if (wheelTitle) wheelTitle.textContent = "Training Arc: Spin to Evolve";
+    if (spinBtn) {
+      spinBtn.textContent = "EVOLVE CHARACTER";
+      spinBtn.disabled = false;
     }
 
-    setTimeout(() => {
-      const selected = slices[selectedIndex];
-      const oldChar = selected.char;
-      const nextFormName = oldChar.nextForm;
-
-      const evolvedData = gameState.activeCharacters.find(c => c.name === nextFormName);
-
-      if (evolvedData) {
-        gameState.party[selected.partyIndex] = { ...evolvedData };
-      } else {
-        gameState.party[selected.partyIndex].name = nextFormName;
-        gameState.party[selected.partyIndex].nextForm = null;
-      }
-
-      this.logEvent(`[EVOLUTION!] ${oldChar.name} evolved into ${nextFormName}!`);
-      this.updateUI();
-
-      if (trainModal) trainModal.classList.add("hidden");
-      this.triggerBossBattle();
-    }, 4000);
+    this.resetCanvasRotation();
+    this.drawCurrentWheel();
   },
 
   triggerBossBattle: function() {
-    if (!gameState.activeBosses || gameState.activeBosses.length === 0) return;
+    if (!gameState.activeBosses || gameState.activeBosses.length === 0) {
+      this.logEvent(`[VICTORY] You conquered all bosses in this world!`);
+      return;
+    }
 
-    let baseWinRate = Math.max(10, 85 - (gameState.stage - 1) * 10);
-    let teamBonus = gameState.party.length * 5; 
-    let winPercent = Math.min(95, baseWinRate + teamBonus);
+    gameState.phase = "BOSS_BATTLE";
+    const bossIndex = Math.min(gameState.stage - 1, gameState.activeBosses.length - 1);
+    gameState.currentBoss = gameState.activeBosses[bossIndex];
 
-    gameState.currentBoss = gameState.activeBosses[(gameState.stage - 1) % gameState.activeBosses.length];
+    const startingBaseWinRate = 0.75;
+    const stagePenalty = (gameState.stage - 1) * 0.15;
+    let calculatedWinRate = startingBaseWinRate - stagePenalty;
 
-    const totalSlices = 16;
-    const winCount = Math.max(1, Math.round((winPercent / 100) * totalSlices));
+    const extraMembers = Math.max(0, gameState.party.length - 1);
+    const partyBonus = extraMembers * 0.05;
 
-    gameState.bossSlices = [];
-    const step = totalSlices / winCount;
+    const allNextForms = new Set(
+      gameState.activeCharacters
+        .map(c => c.nextForm)
+        .filter(nf => nf !== null && nf !== undefined)
+    );
+    const evolvedCount = gameState.party.filter(member => allNextForms.has(member.name)).length;
+    const evolutionBonus = evolvedCount * 0.10;
 
-    for (let i = 0; i < totalSlices; i++) {
-      const isWin = Math.floor(i % step) === 0 && winCount > 0;
-      gameState.bossSlices.push({
-        label: isWin ? "Yes" : "No",
-        weight: 1,
-        color: isWin ? "#2ed573" : "#ff4757"
+    calculatedWinRate += partyBonus + evolutionBonus;
+
+    const winChanceFraction = Math.min(0.90, Math.max(0.10, calculatedWinRate));
+    const winPercentage = Math.round(winChanceFraction * 100);
+
+    function getSimplifiedRatio(numerator, denominator) {
+      function gcd(a, b) { return b === 0 ? a : gcd(b, a % b); }
+      const divisor = gcd(numerator, denominator);
+      return { green: numerator / divisor, total: denominator / divisor };
+    }
+
+    let { green: greenCount, total: totalSlices } = getSimplifiedRatio(winPercentage, 100);
+
+    if (totalSlices < 4) {
+      greenCount *= Math.ceil(4 / totalSlices);
+      totalSlices = Math.ceil(4 / totalSlices) * totalSlices;
+    } else if (totalSlices > 20) {
+      totalSlices = 20;
+      greenCount = Math.round(winChanceFraction * 20);
+    }
+
+    const slicesArr = new Array(totalSlices).fill("defeat");
+    if (greenCount > 0) {
+      const step = totalSlices / greenCount;
+      for (let i = 0; i < greenCount; i++) {
+        const indexToPlace = Math.floor(i * step);
+        slicesArr[indexToPlace] = "victory";
+      }
+    }
+
+    currentWheelSlices = slicesArr.map((type) => ({
+      label: type === "victory" ? "Victory" : "Defeat",
+      type: type,
+      weight: 1,
+      color: type === "victory" ? "#2ed573" : "#ff4757"
+    }));
+
+    if (wheelTitle) wheelTitle.textContent = `Boss: ${gameState.currentBoss.name} (${winPercentage}% Win Rate)`;
+    if (spinBtn) {
+      spinBtn.textContent = "FIGHT BOSS";
+      spinBtn.disabled = false;
+    }
+
+    this.resetCanvasRotation();
+    this.drawCurrentWheel();
+  },
+
+  resolveBossBattle: function(selectedSlice) {
+    const isVictory = selectedSlice.type === "victory";
+
+    if (isVictory) {
+      this.logEvent(`[BOSS VICTORY] Defeated ${gameState.currentBoss.name}!`);
+      
+      if (gameState.stage >= gameState.activeBosses.length) {
+        if (wheelTitle) wheelTitle.textContent = "🏆 YOU BEAT THE FINAL BOSS! YOU WIN!";
+        this.logEvent(`[VICTORY] You conquered the world!`);
+        if (spinBtn) spinBtn.classList.add("hidden");
+        if (restartBtn) restartBtn.classList.remove("hidden");
+      } else {
+        this.setupEvolutionWheel();
+      }
+    } else {
+      if (gameState.inventory.senzuBean > 0) {
+        gameState.inventory.senzuBean--;
+        if (wheelTitle) wheelTitle.textContent = `Defeated! Used 1 Senzu Bean! Re-spinning...`;
+        this.logEvent(`[BOSS DEFEAT] Used 1 Senzu Bean to survive against ${gameState.currentBoss.name}! Re-rolling battle...`);
+        this.updateUI();
+
+        setTimeout(() => {
+          this.triggerBossBattle();
+        }, 1500);
+      } else {
+        if (wheelTitle) wheelTitle.textContent = "💀 GAME OVER! You ran out of Senzu Beans.";
+        this.logEvent(`[GAME OVER] Defeated by ${gameState.currentBoss.name} with no Senzu Beans remaining.`);
+        if (spinBtn) spinBtn.classList.add("hidden");
+        if (restartBtn) restartBtn.classList.remove("hidden");
+      }
+    }
+  },
+
+  setupEvolutionWheel: function() {
+    const eligibleMembers = gameState.party.filter(
+      char => char.nextForm !== null && char.nextForm !== undefined
+    );
+
+    if (eligibleMembers.length === 0) {
+      this.logEvent(`[EVOLUTION REWARD] No evolvable characters in party. Advancing to Stage ${gameState.stage + 1}...`);
+      gameState.stage++;
+      this.updateUI();
+      this.transitionToMainGame();
+      return;
+    }
+
+    gameState.phase = "EVOLUTION_WHEEL";
+
+    const successPercentage = Math.round(gameState.evoChance * 100);
+    const failPercentage = 100 - successPercentage;
+
+    currentWheelSlices = [];
+    if (successPercentage > 0) {
+      currentWheelSlices.push({
+        label: `Evolution (${successPercentage}%)`,
+        type: "success",
+        weight: successPercentage,
+        color: "#2ed573"
+      });
+    }
+    if (failPercentage > 0) {
+      currentWheelSlices.push({
+        label: `No Evolution (${failPercentage}%)`,
+        type: "fail",
+        weight: failPercentage,
+        color: "#ff4757"
       });
     }
 
-    const titleEl = document.getElementById("bossModalTitle");
-    const descEl = document.getElementById("bossModalDesc");
-    if (titleEl) titleEl.innerText = `Stage ${gameState.stage} Boss: ${gameState.currentBoss.name}!`;
-    if (descEl) descEl.innerText = `Win Odds: ${winPercent}% (Base ${baseWinRate}% + Team Bonus). Spin to fight!`;
-
-    if (battleStatusMsg) battleStatusMsg.innerText = "";
-    if (bossSpinBtn) {
-      bossSpinBtn.classList.remove("hidden");
-      bossSpinBtn.disabled = false;
+    if (wheelTitle) wheelTitle.textContent = `Post-Boss Reward: Evolution Chance (${successPercentage}%)`;
+    if (spinBtn) {
+      spinBtn.textContent = "SPIN FOR EVOLUTION";
+      spinBtn.disabled = false;
     }
 
-    if (bossModal) bossModal.classList.remove("hidden");
-    if (bossCanvas) {
-      bossCanvas.style.transition = "none";
-      gameState.bossRotation = 0;
-      bossCanvas.style.transform = `rotate(0deg)`;
-      void bossCanvas.offsetHeight;
-      this.drawWheel(bossCanvas, bossCtx, gameState.bossSlices);
-    }
+    this.resetCanvasRotation();
+    this.drawCurrentWheel();
   },
 
-  spinBossWheel: function() {
-    if (bossSpinBtn) bossSpinBtn.disabled = true;
+  resolveEvolutionWheel: function(selectedSlice) {
+    if (selectedSlice.type === "success") {
+      gameState.evoChance = 0.25;
 
-    const slices = gameState.bossSlices;
-    const totalWeight = slices.length;
-    const selectedIndex = Math.floor(Math.random() * totalWeight);
-
-    const sliceDeg = 360 / totalWeight;
-    const sliceCenterDeg = (selectedIndex * sliceDeg) + (sliceDeg / 2);
-
-    const extraSpins = 360 * 5;
-    const targetDegree = extraSpins + (360 - sliceCenterDeg) - 90;
-
-    const currentMod = gameState.bossRotation % 360;
-    gameState.bossRotation += (targetDegree - currentMod);
-
-    if (bossCanvas) {
-      bossCanvas.style.transition = "transform 4s cubic-bezier(0.15, 0.9, 0.25, 1)";
-      bossCanvas.style.transform = `rotate(${gameState.bossRotation}deg)`;
-    }
-
-    setTimeout(() => {
-      const outcome = slices[selectedIndex].label;
-
-      if (outcome === "Yes") {
-        this.logEvent(`[VICTORY] You defeated Stage ${gameState.stage} Boss: ${gameState.currentBoss.name}!`);
-        gameState.stage++;
-        this.updateUI();
-
-        if (battleStatusMsg) {
-          battleStatusMsg.style.color = "#2ed573";
-          battleStatusMsg.innerText = "VICTORY! Advancing to next stage...";
+      const eligibleIndices = [];
+      gameState.party.forEach((char, index) => {
+        if (char.nextForm !== null && char.nextForm !== undefined) {
+          eligibleIndices.push(index);
         }
+      });
 
-        setTimeout(() => {
-          if (bossModal) bossModal.classList.add("hidden");
-          if (spinBtn) spinBtn.disabled = false;
-        }, 1500);
+      const randomIndex = eligibleIndices[Math.floor(Math.random() * eligibleIndices.length)];
+      const oldChar = gameState.party[randomIndex];
+      const nextFormObj = gameState.activeCharacters.find(c => c.name === oldChar.nextForm);
 
-      } else {
-        if (gameState.inventory.senzuBean > 0) {
-          gameState.inventory.senzuBean--;
-          this.logEvent(`[DEFEAT] Knocked out! Auto-used 1 Senzu Bean to stay in battle!`);
-          this.updateUI();
-
-          if (battleStatusMsg) {
-            battleStatusMsg.style.color = "#ffa502";
-            battleStatusMsg.innerText = "Defeated! Senzu Bean consumed — Spin again!";
-          }
-          if (bossSpinBtn) bossSpinBtn.disabled = false;
-        } else {
-          this.logEvent(`[GAME OVER] Defeated by ${gameState.currentBoss.name} with no Senzu Beans left! Resetting...`);
-          if (battleStatusMsg) {
-            battleStatusMsg.style.color = "#ff4757";
-            battleStatusMsg.innerText = "GAME OVER! Restarting...";
-          }
-          
-          setTimeout(() => {
-            this.resetGame();
-          }, 2000);
-        }
+      if (nextFormObj) {
+        gameState.party[randomIndex] = { ...nextFormObj };
+        this.logEvent(`[EVOLUTION SUCCESS] ${oldChar.name} EVOLVED into ${nextFormObj.name}! Chance reset to 25%.`);
       }
-    }, 4000);
+    } else {
+      gameState.evoChance = Math.min(1.0, gameState.evoChance + 0.25);
+      this.logEvent(`[EVOLUTION FAILED] No evolution triggered. Next post-boss chance boosted to ${Math.round(gameState.evoChance * 100)}%!`);
+    }
+
+    gameState.stage++;
+    this.updateUI();
+    this.transitionToMainGame();
   },
 
-  resetGame: function() {
-    gameState.phase = "ANIME_SELECT";
-    gameState.selectedAnime = null;
-    gameState.party = [];
-    gameState.inventory = { senzuBean: 0 };
-    gameState.stage = 1;
-    gameState.isSpinning = false;
-
-    if (bossModal) bossModal.classList.add("hidden");
-    if (spinBtn) spinBtn.disabled = false;
-
-    this.init();
-  },
-
-  // Updates Stage, Roster (Pictures Only), and Inventory (Pictures + Badges)
   updateUI: function() {
-    const stageEl = document.getElementById("stageCounter");
-    if (stageEl) stageEl.innerText = gameState.stage;
+    const stageCounter = document.getElementById("stageCounter");
+    if (stageCounter) stageCounter.textContent = gameState.stage;
 
-    const partyCountEl = document.getElementById("partyCount");
-    if (partyCountEl) partyCountEl.innerText = gameState.party.length;
+    const partyCount = document.getElementById("partyCount");
+    if (partyCount) partyCount.textContent = gameState.party.length;
 
-    // Roster grid rendering
     const partyListEl = document.getElementById("partyList");
     if (partyListEl) {
       partyListEl.innerHTML = "";
       if (gameState.party.length === 0) {
         partyListEl.innerHTML = "<p class='empty-msg'>No characters recruited yet.</p>";
       } else {
+        const fallbackImg = "https://via.placeholder.com/150?text=No+Image";
         gameState.party.forEach((char) => {
           const item = document.createElement("div");
           item.className = "party-picture-slot";
           item.title = char.name;
-          
-          const imgSrc = char.image || "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c9/Naruto_logo.svg/500px-Naruto_logo.svg.png";
-          item.innerHTML = `<img src="${imgSrc}" alt="${char.name}" class="roster-img" />`;
+          const imgSrc = char.image || fallbackImg;
+          item.innerHTML = `<img src="${imgSrc}" alt="${char.name}" class="roster-img" onerror="this.onerror=null; this.src='${fallbackImg}';" />`;
           partyListEl.appendChild(item);
         });
       }
     }
 
-    // Inventory grid rendering
     const inventoryListEl = document.getElementById("inventoryList");
     if (inventoryListEl) {
       inventoryListEl.innerHTML = "";
@@ -516,11 +693,12 @@ const GameEngine = {
     if (!logBox) return;
     const entry = document.createElement("div");
     entry.className = "log-entry";
-    entry.innerText = message;
+    entry.textContent = message;
     logBox.appendChild(entry);
     logBox.scrollTop = logBox.scrollHeight;
   }
 };
 
-// Launch Game Engine
-GameEngine.init();
+window.onload = function() {
+  GameEngine.init();
+};

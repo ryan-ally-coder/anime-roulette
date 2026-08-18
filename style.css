@@ -30,13 +30,13 @@ body {
   font-size: 14px;
 }
 
-/* Two-column dashboard layout like s-1.jpg */
+/* Two-column layout (Expanded to fit 3-column roster cards) */
 .main-container {
   display: grid;
-  grid-template-columns: 380px 380px;
+  grid-template-columns: 440px 380px;
   gap: 20px;
   width: 100%;
-  max-width: 780px;
+  max-width: 840px;
   margin-bottom: 20px;
 }
 
@@ -53,6 +53,51 @@ body {
 
 .wheel-card {
   justify-content: center;
+  width: 100%;
+}
+
+/* Selection / Dropdown Container */
+.selection-box {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.mode-view {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.dropdown-container {
+  width: 100%;
+  padding: 20px 10px;
+  text-align: center;
+}
+
+.dropdown-container h3 {
+  margin-bottom: 15px;
+  font-size: 18px;
+  color: #ffa502;
+}
+
+#animeSelectDropdown {
+  width: 100%;
+  padding: 12px;
+  font-size: 14px;
+  background-color: #2f3542;
+  color: #ffffff;
+  border: 1px solid #57606f;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  outline: none;
+  cursor: pointer;
+}
+
+#animeSelectDropdown:focus {
+  border-color: #ffa502;
 }
 
 .side-card {
@@ -67,7 +112,7 @@ body {
   margin-bottom: 12px;
 }
 
-/* Wheel Canvas Wrapper & Arrow Pointer */
+/* Wheel Canvas & Pointer */
 .wheel-box {
   position: relative;
   margin: 15px 0;
@@ -119,39 +164,63 @@ canvas {
   cursor: not-allowed;
 }
 
-/* Roster Grid (Picture-Only Slots) */
+.secondary-btn {
+  background: #2f3542;
+  color: #ffa502;
+  border: 1px solid #ffa502;
+  padding: 8px 14px;
+  font-size: 12px;
+  font-weight: bold;
+  border-radius: 20px;
+  cursor: pointer;
+  margin-bottom: 15px;
+  transition: all 0.2s;
+}
+
+.secondary-btn:hover {
+  background: #ffa502;
+  color: #121214;
+}
+
+/* Roster Grid & Picture Slots (3 per row) */
 .roster-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 10px;
   min-height: 200px;
+  justify-items: center;
 }
 
 .party-picture-slot {
   position: relative;
-  width: 100%;
-  aspect-ratio: 1 / 1;
-  background-color: #2f3542;
+  width: 120px;
+  height: 120px;
+  background-color: #16161a;
   border: 2px solid #57606f;
-  border-radius: 8px;
+  border-radius: 10px;
   overflow: hidden;
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: border-color 0.2s;
+  padding: 6px;
+  transition: border-color 0.2s, transform 0.2s;
 }
 
 .party-picture-slot:hover {
   border-color: #ffa502;
+  transform: scale(1.03);
 }
 
 .roster-img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+  max-width: 100%;
+  max-height: 100%;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  filter: drop-shadow(0px 2px 4px rgba(0, 0, 0, 0.5));
 }
 
-/* Inventory Grid */
+/* Inventory Grid (65px baseline) */
 .inventory-grid {
   display: flex;
   gap: 12px;
@@ -162,31 +231,34 @@ canvas {
   position: relative;
   width: 65px;
   height: 65px;
-  background-color: #2f3542;
+  background-color: #16161a;
   border: 2px solid #1e90ff;
-  border-radius: 8px;
+  border-radius: 10px;
   display: flex;
   align-items: center;
   justify-content: center;
+  padding: 6px;
+  overflow: hidden;
 }
 
 .inventory-img {
-  width: 80%;
-  height: 80%;
+  max-width: 100%;
+  max-height: 100%;
   object-fit: contain;
 }
 
 .item-badge {
   position: absolute;
-  bottom: 3px;
-  right: 3px;
+  bottom: 2px;
+  right: 2px;
   background: rgba(0, 0, 0, 0.85);
   color: #2ed573;
   font-size: 10px;
   font-weight: bold;
   padding: 1px 5px;
-  border-radius: 8px;
+  border-radius: 6px;
   border: 1px solid #2ed573;
+  z-index: 2;
 }
 
 .empty-msg {
@@ -194,19 +266,67 @@ canvas {
   font-size: 13px;
   grid-column: 1 / -1;
   text-align: center;
-  margin-top: 20px;
+  padding-top: 20px;
 }
 
-/* Activity Log */
-.log-card {
-  width: 100%;
-  max-width: 780px;
-  height: 120px;
-  align-items: stretch;
+/* Slide-out Game Log Sidebar */
+.log-sidebar {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 320px;
+  height: 100vh;
+  background: #18181c;
+  border-left: 1px solid #2f3542;
+  box-shadow: -4px 0 16px rgba(0, 0, 0, 0.6);
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  transition: transform 0.3s ease-in-out, visibility 0.3s ease-in-out;
+  transform: translateX(0);
+  visibility: visible;
+}
+
+.log-sidebar.hidden {
+  transform: translateX(100%);
+  visibility: hidden;
+}
+
+.sidebar-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #2f3542;
+  padding-bottom: 10px;
+  margin-bottom: 15px;
+}
+
+.sidebar-header h3 {
+  font-size: 16px;
+  color: #dfe4ea;
+}
+
+.close-btn {
+  background: none;
+  border: none;
+  color: #a4b0be;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+.close-btn:hover {
+  color: #ffffff;
+}
+
+.log-card-sidebar {
+  flex: 1;
   overflow-y: auto;
   font-family: monospace;
   font-size: 12px;
-  background: #141418;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
 }
 
 .log-entry {
@@ -214,31 +334,31 @@ canvas {
   margin-bottom: 4px;
 }
 
-/* Modal Popup Overlays */
+/* Modal Overlays */
 .modal {
   position: fixed;
   top: 0;
   left: 0;
   width: 100vw;
   height: 100vh;
-  background: rgba(0, 0, 0, 0.75);
+  background: rgba(0, 0, 0, 0.8);
   display: flex;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
   z-index: 100;
 }
 
 .modal-content {
-  width: 320px;
-  text-align: center;
-}
-
-.status-msg {
-  margin-top: 10px;
-  font-weight: bold;
-  font-size: 13px;
+  width: 340px;
 }
 
 .hidden {
   display: none !important;
+}
+
+.battle-msg {
+  margin-top: 10px;
+  font-weight: bold;
+  font-size: 13px;
+  color: #ff4757;
 }
