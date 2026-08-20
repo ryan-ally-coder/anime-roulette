@@ -5,10 +5,10 @@
       "title": "One Piece",
       "enabled": true,
       "characters": [
-        { "id": "luffy_1", "name": "Monkey D. Luffy (Base)", "image": "images/Monkey D. luffy (Base).png", "nextForm": "luffy (Gear 2)" },
-        { "id": "luffy_2", "name": "luffy (Gear 2)", "image": "images/luffy (Gear 2).png", "nextForm": "luffy (Gear 4)" },
-        { "id": "luffy_3", "name": "luffy (Gear 4)", "image": "images/luffy (Gear 4).png", "nextForm": "luffy (Gear 5)" },
-        { "id": "luffy_4", "name": "luffy (Gear 5)", "image": "images/luffy (Gear 5).png", "nextForm": null },
+        { "id": "luffy_1", "name": "Monkey D. Luffy (Base)", "image": "images/luffy (base).png", "nextForm": "luffy (Gear 2)" },
+        { "id": "luffy_2", "name": "luffy (Gear 2)", "image": "images/luffy (gear 2).png", "nextForm": "luffy (Gear 4)" },
+        { "id": "luffy_3", "name": "luffy (Gear 4)", "image": "images/luffy (gear 4).png", "nextForm": "luffy (Gear 5)" },
+        { "id": "luffy_4", "name": "luffy (Gear 5)", "image": "images/luffy (gear 5).png", "nextForm": null },
 
         { "id": "zoro_1", "name": "Roronoa Zoro (East Blue)", "image": "images/Roronoa Zoro (East Blue).png", "nextForm": "Zoro (Asura)" },
         { "id": "zoro_2", "name": "Zoro (Asura)", "image": "images/Zoro (Asura).png", "nextForm": "Zoro (Enma Mastery)" },

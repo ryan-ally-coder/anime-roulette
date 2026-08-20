@@ -1,6 +1,6 @@
 // Global Game State
 const gameState = {
-  phase: "ANIME_SELECT", // ANIME_SELECT, STARTER_SELECT, MAIN_GAME, ENCOUNTER_SELECT, TRAINING_SELECT, BOSS_BATTLE, EVOLUTION_WHEEL
+  phase: "ANIME_SELECT", // ANIME_SELECT, STARTER_SELECT, MAIN_GAME, ENCOUNTER_SELECT, TRAINING_SELECT, WANDER_OFF_WHEEL, BOSS_BATTLE, EVOLUTION_WHEEL
   isChooseMode: false,
   selectedAnime: null,
   party: [],
@@ -18,11 +18,12 @@ const gameState = {
   bossSlices: []
 };
 
-// Main Event Wheel Slices
+// Main Event Wheel Slices (Updated to include Wander Off)
 const mainSlices = [
-  { label: "Random Encounter", weight: 50, color: "#2ed573" },
-  { label: "Training Arc", weight: 40, color: "#ffa502" },
-  { label: "Item Drop", weight: 10, color: "#1e90ff" }
+  { label: "Random Encounter", weight: 45, color: "#2ed573" },
+  { label: "Training Arc", weight: 30, color: "#ffa502" },
+  { label: "Item Drop", weight: 10, color: "#1e90ff" },
+  { label: "Wander Off", weight: 15, color: "#9b59b6" }
 ];
 
 let currentWheelSlices = [];
@@ -362,6 +363,10 @@ const GameEngine = {
         this.triggerBossBattle();
         break;
 
+      case "WANDER_OFF_WHEEL":
+        this.resolveWanderOffWheel(selectedSlice);
+        break;
+
       case "BOSS_BATTLE":
         this.resolveBossBattle(selectedSlice);
         break;
@@ -399,6 +404,9 @@ const GameEngine = {
         this.logEvent(`[ITEM DROP] Found a Senzu Bean! Added to inventory.`);
         this.updateUI();
         this.triggerBossBattle();
+        break;
+      case "Wander Off":
+        this.setupWanderOffWheel();
         break;
     }
   },
@@ -465,6 +473,108 @@ const GameEngine = {
     this.drawCurrentWheel();
   },
 
+  setupWanderOffWheel: function() {
+    gameState.phase = "WANDER_OFF_WHEEL";
+
+    currentWheelSlices = [
+      { label: "Bag of Senzu Beans (x3)", type: "senzu_bag", weight: 25, color: "#1e90ff" },
+      { label: "Duo Training", type: "duo_training", weight: 25, color: "#ffa502" },
+      { label: "Ultimate Discovery", type: "ultimate_discovery", weight: 15, color: "#9b59b6" },
+      { label: "Wander Back (Boss)", type: "wander_back", weight: 35, color: "#ff4757" }
+    ];
+
+    if (wheelTitle) wheelTitle.textContent = "Wander Off: Spin for a Mystery Event!";
+    if (spinBtn) {
+      spinBtn.textContent = "SPIN WANDER OFF";
+      spinBtn.disabled = false;
+    }
+
+    this.resetCanvasRotation();
+    this.drawCurrentWheel();
+  },
+
+  resolveWanderOffWheel: function(selectedSlice) {
+    switch (selectedSlice.type) {
+      case "senzu_bag":
+        gameState.inventory.senzuBean += 3;
+        this.logEvent(`[WANDER OFF] Found a bag of Senzu Beans! +3 Senzu Beans added.`);
+        this.updateUI();
+        this.triggerBossBattle();
+        break;
+
+      case "duo_training":
+        const eligibleMembers = gameState.party
+          .map((char, index) => ({ char, partyIndex: index }))
+          .filter(item => item.char.nextForm !== null && item.char.nextForm !== undefined);
+
+        if (eligibleMembers.length === 0) {
+          gameState.inventory.senzuBean++;
+          this.logEvent(`[DUO TRAINING] No evolvable characters in party! Rewarded 1 Senzu Bean instead.`);
+        } else {
+          const shuffled = [...eligibleMembers].sort(() => 0.5 - Math.random());
+          const toEvolve = shuffled.slice(0, 2);
+
+          toEvolve.forEach(item => {
+            const nextFormObj = gameState.activeCharacters.find(c => c.name === item.char.nextForm);
+            if (nextFormObj) {
+              gameState.party[item.partyIndex] = { ...nextFormObj };
+              this.logEvent(`[DUO TRAINING] ${item.char.name} evolved into ${nextFormObj.name}!`);
+            }
+          });
+
+          if (eligibleMembers.length === 1) {
+            gameState.inventory.senzuBean++;
+            this.logEvent(`[DUO TRAINING] Only 1 party member could evolve, so you found 1 bonus Senzu Bean!`);
+          }
+        }
+        this.updateUI();
+        this.triggerBossBattle();
+        break;
+
+      case "ultimate_discovery":
+        let evolvedAny = false;
+        gameState.party.forEach((char, index) => {
+          let current = char;
+          let chainCount = 1;
+          while (current && current.nextForm) {
+            chainCount++;
+            current = gameState.activeCharacters.find(c => c.name === current.nextForm);
+          }
+
+          if (chainCount >= 3) {
+            let finalForm = char;
+            while (finalForm && finalForm.nextForm) {
+              let nextObj = gameState.activeCharacters.find(c => c.name === finalForm.nextForm);
+              if (nextObj) finalForm = nextObj;
+              else break;
+            }
+
+            if (finalForm.name !== gameState.party[index].name) {
+              gameState.party[index] = { ...finalForm };
+              this.logEvent(`[ULTIMATE DISCOVERY] ${char.name}'s lineage unlocked their final form: ${finalForm.name}!`);
+              evolvedAny = true;
+            }
+          }
+        });
+
+        if (!evolvedAny) {
+          this.logEvent(`[ULTIMATE DISCOVERY] No characters in your party have deep enough evolution lines (3+ forms). You found a Senzu Bean instead!`);
+          gameState.inventory.senzuBean++;
+        }
+
+        this.updateUI();
+        this.triggerBossBattle();
+        break;
+
+      case "wander_back":
+      default:
+        this.logEvent(`[WANDER BACK] You wandered back safely, starting the boss battle!`);
+        this.updateUI();
+        this.triggerBossBattle();
+        break;
+    }
+  },
+
   triggerBossBattle: function() {
     if (!gameState.activeBosses || gameState.activeBosses.length === 0) {
       this.logEvent(`[VICTORY] You conquered all bosses in this world!`);
@@ -475,7 +585,7 @@ const GameEngine = {
     const bossIndex = Math.min(gameState.stage - 1, gameState.activeBosses.length - 1);
     gameState.currentBoss = gameState.activeBosses[bossIndex];
 
-    const startingBaseWinRate = 0.75;
+    const startingBaseWinRate = 0.60;
     const stagePenalty = (gameState.stage - 1) * 0.15;
     let calculatedWinRate = startingBaseWinRate - stagePenalty;
 
