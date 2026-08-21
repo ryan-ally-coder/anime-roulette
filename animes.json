@@ -69,11 +69,14 @@
         { "id": "roger", "name": "Gol D. Roger", "image": "images/Gol D. Roger.png", "nextForm": null }
       ],
       "bosses": [
-        { "name": "Kaido (Base)", "image": "images/Kaido (Base).png" },
-        { "name": "Kaido (Full Dragon Form)", "image": "images/Kaido (Full Dragon Form).png" },
-        { "name": "Kaido (Hybrid Form)", "image": "images/Kaido (Hybrid Form).png" },
-        { "name": "Kaido (Flame Dragon Torch)", "image": "images/Kaido (Flame Dragon Torch).png" },
-        { "name": "Big Mom (Charlotte Linlin)", "image": "images/Big Mom (Charlotte Linlin).png" }
+        { "name": "Buggy the Clown", "image": "images/Buggy.png" },
+        { "name": "Captain Kuro", "image": "images/Kuro.png" },
+        { "name": "Don Krieg", "image": "images/Krieg.png" },
+        { "name": "Arlong", "image": "images/Arlong.png" },
+        { "name": "Crocodile", "image": "images/Crocodile.png" },
+        { "name": "Rob Lucci", "image": "images/Lucci.png" },
+        { "name": "Donquixote Doflamingo", "image": "images/Donquixote Doflamingo (Base).png" },
+        { "name": "Kaido (Hybrid Form)", "image": "images/Kaido (Hybrid Form).png" }
       ]
     },
     {
@@ -148,9 +151,14 @@
         { "id": "sai", "name": "Sai", "image": "images/Sai.png", "nextForm": null }
       ],
       "bosses": [
-        { "name": "Madara Uchiha (Base)", "image": "images/Madara Uchiha (Base).png" },
-        { "name": "Madara (Rinnegan Perfect Susanoo)", "image": "images/Madara (Rinnegan Perfect Susanoo).png" },
-        { "name": "Madara (Ten-Tails Jinchuriki)", "image": "images/Madara (Ten-Tails Jinchuriki).png" }
+        { "name": "Zabuza Momochi", "image": "images/Zabuza.png" },
+        { "name": "Orochimaru", "image": "images/Orochimaru (Base).png" },
+        { "name": "Itachi Uchiha", "image": "images/Itachi Uchiha (Base).png" },
+        { "name": "Pain (Six Paths)", "image": "images/Pain (Six Paths of Pain).png" },
+        { "name": "Sasuke Uchiha", "image": "images/Sasuke Uchiha (Base).png" },
+        { "name": "Obito (Ten-Tails Jinchuriki)", "image": "images/Obito (Ten-Tails Jinchuriki).png" },
+        { "name": "Madara Uchiha (Rinnegan)", "image": "images/Madara (Rinnegan Perfect Susanoo).png" },
+        { "name": "Kaguya Otsutsuki", "image": "images/Kaguya.png" }
       ]
     },
     {
@@ -213,8 +221,14 @@
         { "id": "mikasa", "name": "Mikasa Ackerman", "image": "images/Mikasa Ackerman.png", "nextForm": null }
       ],
       "bosses": [
-        { "name": "Eren (Founding Titan Rumbling)", "image": "images/Eren (Founding Titan Rumbling).png" },
-        { "name": "Zeke (Beast Titan)", "image": "images/Zeke (Beast Titan).png" }
+        { "name": "The Colossal Titan (Intro)", "image": "images/Bertholdt (Colossal Titan).png" },
+        { "name": "The Armored Titan", "image": "images/Reiner (Armored Titan).png" },
+        { "name": "Annie (Female Titan)", "image": "images/Annie (Female Titan).png" },
+        { "name": "The Beast Titan", "image": "images/Zeke (Beast Titan).png" },
+        { "name": "Kenny Ackerman", "image": "images/Kenny Ackerman (Thug).png" },
+        { "name": "The War Hammer Titan", "image": "images/War Hammer.png" },
+        { "name": "Floch Forster", "image": "images/Floch.png" },
+        { "name": "Eren (Founding Titan Rumbling)", "image": "images/Eren (Founding Titan Rumbling).png" }
       ]
     },
     {
@@ -268,11 +282,14 @@
         { "id": "rui", "name": "Rui", "image": "images/Rui.png", "nextForm": null }
       ],
       "bosses": [
+        { "name": "Rui (Lower Moon 5)", "image": "images/Rui.png" },
+        { "name": "Enmu (Lower Moon 1)", "image": "images/Enmu.png" },
         { "name": "Akaza (Upper Moon 3)", "image": "images/Akaza (Upper Moon 3).png" },
-        { "name": "Doma", "image": "images/Doma.png" },
+        { "name": "Gyutaro & Daki (Upper Moon 6)", "image": "images/Gyutaro.png" },
+        { "name": "Hantengu (Upper Moon 4)", "image": "images/Hantengu.png" },
+        { "name": "Gyokko (Upper Moon 5)", "image": "images/Gyokko.png" },
         { "name": "Kokushibo (Upper Moon 1)", "image": "images/Kokushibo (Upper Moon 1).png" },
-        { "name": "Muzan Kibutsuji (Base)", "image": "images/Muzan Kibutsuji (Base).png" },
-        { "name": "Muzan (Combat Whip Form)", "image": "images/Muzan (Combat Whip Form).png" }
+        { "name": "Muzan Kibutsuji", "image": "images/Muzan Kibutsuji (Base).png" }
       ]
     },
     {
@@ -328,11 +345,14 @@
         { "id": "nejire", "name": "Nejire Hado", "image": "images/Nejire Hado.png", "nextForm": null }
       ],
       "bosses": [
-        { "name": "Dabi (Blueflame)", "image": "images/Dabi (Blueflame).png" },
+        { "name": "Nomu (USJ)", "image": "images/Nomu.png" },
+        { "name": "Stain (Hero Killer)", "image": "images/Stain.png" },
         { "name": "Tomura Shigaraki (Base Decay)", "image": "images/Tomura Shigaraki (Base Decay).png" },
-        { "name": "Shigaraki (All For One Fusion)", "image": "images/Shigaraki (All For One Fusion).png" },
+        { "name": "Kai Chisaki (Overhaul)", "image": "images/Overhaul.png" },
+        { "name": "Gigantomachia", "image": "images/Gigantomachia.png" },
+        { "name": "Dabi (Blueflame)", "image": "images/Dabi (Blueflame).png" },
         { "name": "All For One (Masked)", "image": "images/All For One (Masked).png" },
-        { "name": "All For One (Rewind Prime Form)", "image": "images/All For One (Rewind Prime Form).png" }
+        { "name": "Shigaraki (All For One Fusion)", "image": "images/Shigaraki (All For One Fusion).png" }
       ]
     }
   ]

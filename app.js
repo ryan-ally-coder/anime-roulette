@@ -729,22 +729,11 @@ const GameEngine = {
   resolveEvolutionWheel: function(selectedSlice) {
     if (selectedSlice.type === "success") {
       gameState.evoChance = 0.25;
-
-      const eligibleIndices = [];
-      gameState.party.forEach((char, index) => {
-        if (char.nextForm !== null && char.nextForm !== undefined) {
-          eligibleIndices.push(index);
-        }
-      });
-
-      const randomIndex = eligibleIndices[Math.floor(Math.random() * eligibleIndices.length)];
-      const oldChar = gameState.party[randomIndex];
-      const nextFormObj = gameState.activeCharacters.find(c => c.name === oldChar.nextForm);
-
-      if (nextFormObj) {
-        gameState.party[randomIndex] = { ...nextFormObj };
-        this.logEvent(`[EVOLUTION SUCCESS] ${oldChar.name} EVOLVED into ${nextFormObj.name}! Chance reset to 25%.`);
-      }
+      this.logEvent(`[EVOLUTION SUCCESS] Evolution triggered! Chance reset to 25%.`);
+      
+      // Open up the training arc wheel so the player picks/spins who evolves!
+      this.setupTrainingArcWheel();
+      return;
     } else {
       gameState.evoChance = Math.min(1.0, gameState.evoChance + 0.25);
       this.logEvent(`[EVOLUTION FAILED] No evolution triggered. Next post-boss chance boosted to ${Math.round(gameState.evoChance * 100)}%!`);

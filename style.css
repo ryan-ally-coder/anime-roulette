@@ -11,7 +11,8 @@ body {
   padding: 20px;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: center; /* Centers children horizontally */
+  justify-content: center; /* Centers vertically if there's extra screen space */
   min-height: 100vh;
 }
 
@@ -30,14 +31,14 @@ body {
   font-size: 14px;
 }
 
-/* Two-column layout (Expanded to fit 3-column roster cards) */
 .main-container {
   display: grid;
-  grid-template-columns: 440px 380px;
+  grid-template-columns: 440px 400px;
   gap: 20px;
   width: 100%;
-  max-width: 840px;
+  max-width: 980px;
   margin-bottom: 20px;
+  margin: 0 auto;
 }
 
 .card {
@@ -49,6 +50,13 @@ body {
   flex-direction: column;
   align-items: center;
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
+}
+
+/* Specific layout for the right info card */
+.card.info-card {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
 }
 
 .wheel-card {
@@ -102,6 +110,7 @@ body {
 
 .side-card {
   align-items: stretch;
+  width: 100%;
 }
 
 .side-card h2 {
@@ -110,6 +119,26 @@ body {
   border-bottom: 1px solid #2f3542;
   padding-bottom: 6px;
   margin-bottom: 12px;
+  text-align: center;
+}
+
+/* Info Sections for Party and Inventory */
+.info-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.info-section h3 {
+  font-size: 16px;
+  color: #dfe4ea;
+  border-bottom: 1px solid #2f3542;
+  padding-bottom: 6px;
+  margin-bottom: 12px;
+  text-align: center;
+  width: 100%;
 }
 
 /* Wheel Canvas & Pointer */
@@ -182,19 +211,21 @@ canvas {
   color: #121214;
 }
 
-/* Roster Grid & Picture Slots (3 per row) */
+/* Roster Grid: Forced 3 columns with fixed square dimensions */
+/* Tightens up the grid so characters sit closer together and align left */
 .roster-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 10px;
+  display: grid !important;
+  grid-template-columns: repeat(3, 110px) !important; /* Fixed width columns instead of stretching */
+  gap: 10px !important;
   min-height: 200px;
-  justify-items: center;
+  width: 100% !important;
+  justify-content: start !important; /* Aligns the grid items to the left */
 }
 
 .party-picture-slot {
   position: relative;
-  width: 120px;
-  height: 120px;
+  width: 110px !important; /* Fixed size to keep them compact */
+  height: 110px !important;
   background-color: #16161a;
   border: 2px solid #57606f;
   border-radius: 10px;
@@ -220,11 +251,13 @@ canvas {
   filter: drop-shadow(0px 2px 4px rgba(0, 0, 0, 0.5));
 }
 
-/* Inventory Grid (65px baseline) */
+/* Horizontal Row Grid for Items */
 .inventory-grid {
-  display: flex;
-  gap: 12px;
+  display: flex !important;
+  flex-wrap: wrap !important;
+  gap: 10px;
   min-height: 70px;
+  width: 100% !important;
 }
 
 .inventory-picture-slot {
@@ -267,6 +300,7 @@ canvas {
   grid-column: 1 / -1;
   text-align: center;
   padding-top: 20px;
+  width: 100%;
 }
 
 /* Slide-out Game Log Sidebar */
