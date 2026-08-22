@@ -477,10 +477,11 @@ const GameEngine = {
     gameState.phase = "WANDER_OFF_WHEEL";
 
     currentWheelSlices = [
-      { label: "Bag of Senzu Beans (x3)", type: "senzu_bag", weight: 25, color: "#1e90ff" },
-      { label: "Duo Training", type: "duo_training", weight: 25, color: "#ffa502" },
+      { label: "Bag of Senzu Beans (x3)", type: "senzu_bag", weight: 20, color: "#1e90ff" },
+      { label: "Duo Training", type: "duo_training", weight: 20, color: "#ffa502" },
       { label: "Ultimate Discovery", type: "ultimate_discovery", weight: 15, color: "#9b59b6" },
-      { label: "Wander Back (Boss)", type: "wander_back", weight: 35, color: "#ff4757" }
+      { label: "Universal Rift", type: "universal_rift", weight: 15, color: "#00d2d3" },
+      { label: "Wander Back (Boss)", type: "wander_back", weight: 30, color: "#ff4757" }
     ];
 
     if (wheelTitle) wheelTitle.textContent = "Wander Off: Spin for a Mystery Event!";
@@ -566,6 +567,23 @@ const GameEngine = {
         this.triggerBossBattle();
         break;
 
+      case "universal_rift":
+        const otherAnimes = gameState.availableAnimes.filter(a => a.id !== gameState.selectedAnime.id);
+        
+        if (otherAnimes.length === 0 || gameState.party.length >= 6) {
+          gameState.inventory.senzuBean++;
+          this.logEvent(`[UNIVERSAL RIFT] A rift opened, but your party was full! You found a Senzu Bean instead.`);
+        } else {
+          const randomAnime = otherAnimes[Math.floor(Math.random() * otherAnimes.length)];
+          const randomChar = randomAnime.characters[Math.floor(Math.random() * randomAnime.characters.length)];
+
+          gameState.party.push({ ...randomChar });
+          this.logEvent(`[UNIVERSAL RIFT] A tear in space-time opened! ${randomChar.name} crossed over from ${randomAnime.title} and joined your party!`);
+        }
+        this.updateUI();
+        this.triggerBossBattle();
+        break;
+
       case "wander_back":
       default:
         this.logEvent(`[WANDER BACK] You wandered back safely, starting the boss battle!`);
@@ -592,12 +610,20 @@ const GameEngine = {
     const extraMembers = Math.max(0, gameState.party.length - 1);
     const partyBonus = extraMembers * 0.05;
 
-    const allNextForms = new Set(
-      gameState.activeCharacters
-        .map(c => c.nextForm)
-        .filter(nf => nf !== null && nf !== undefined)
-    );
-    const evolvedCount = gameState.party.filter(member => allNextForms.has(member.name)).length;
+    // Fixed evolution check: accounts for both direct evolution targets and recruited advanced characters with ancestry
+    const evolvedCount = gameState.party.filter(member => {
+      const isSomeoneElseNextForm = gameState.activeCharacters.some(c => c.nextForm === member.name);
+      const hasPrevo = gameState.activeCharacters.some(c => {
+        let current = c;
+        while (current && current.nextForm) {
+          if (current.nextForm === member.name) return true;
+          current = gameState.activeCharacters.find(x => x.name === current.nextForm);
+        }
+        return false;
+      });
+      return isSomeoneElseNextForm || hasPrevo;
+    }).length;
+
     const evolutionBonus = evolvedCount * 0.10;
 
     calculatedWinRate += partyBonus + evolutionBonus;
@@ -731,7 +757,6 @@ const GameEngine = {
       gameState.evoChance = 0.25;
       this.logEvent(`[EVOLUTION SUCCESS] Evolution triggered! Chance reset to 25%.`);
       
-      // Open up the training arc wheel so the player picks/spins who evolves!
       this.setupTrainingArcWheel();
       return;
     } else {
@@ -777,7 +802,7 @@ const GameEngine = {
         itemSlot.className = "inventory-picture-slot";
         itemSlot.title = "Senzu Bean";
         itemSlot.innerHTML = `
-          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/89/Symbol_of_Dragon_Ball.svg/500px-Symbol_of_Dragon_Ball.svg.png" alt="Senzu Bean" class="inventory-img" />
+          <img src="images/Senzu_Bean.webp" alt="Senzu Bean" class="inventory-img" />
           <span class="item-badge">x${gameState.inventory.senzuBean}</span>
         `;
         inventoryListEl.appendChild(itemSlot);
